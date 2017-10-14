@@ -8,5 +8,33 @@ import java.util.List;
 public class Movie {
     private int movieId;
     private String title;
-    private List<String> genre;
+
+    public int getMovieId() {
+        return movieId;
+    }
+
+    public void setMovieId(int movieId) {
+        this.movieId = movieId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public List<Rating> getRatingList() {
+        return ratingList;
+    }
+
+    public void setRatingList(List<Rating> ratingList) {
+        this.ratingList = ratingList;
+    }
+
+    private List<Rating> ratingList;
+
+
+
 }
