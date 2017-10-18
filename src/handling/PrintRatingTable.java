@@ -1,10 +1,17 @@
 package handling;
 
-import java.io.*;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
 /**
  * Created by Luis on 2017/10/13.
  */
+
+//ほんとは直接出力するのは良くなくて、一旦どこかに保存してそれをプリントすべき
+
 public class PrintRatingTable {
 
     public static void main(String[] args) {
@@ -22,7 +29,6 @@ public class PrintRatingTable {
 
             System.out.println(movieNumbers); //表の1行目
             System.out.print(String.valueOf(countUser) + " "); //ユーザー1だけ先にプリント
-
 
             while((readString = in.readLine()) != null) {
                 //読み込んだファイルの各行からユーザー、映画、その評価を取り出して分けておく
@@ -46,7 +52,7 @@ public class PrintRatingTable {
                     System.out.print(" -");
                     countMovie++;
                 }
-                System.out.print(" " + String.valueOf(atRating));
+                System.out.print(" " + String.valueOf(atRating)); //該当箇所の評価を書き込む
                 countMovie++;
             }
         } catch (FileNotFoundException e){
