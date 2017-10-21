@@ -11,7 +11,7 @@ import java.util.Map;
  * Created by Luis on 2017/10/17.
  */
 public class MovieTitle {
-    Map<Integer,String> movieTitles = new HashMap<Integer,String>();
+    Map<Integer,String> movieTitles = new HashMap<>();
     String filePath = "res/exp_data/movies.dat";
     String splitter = "::";
 
@@ -50,8 +50,8 @@ public class MovieTitle {
     }
 
     public void printTable(int index){
-        getTitle(index + 1);
-        //System.out.println(String.valueOf(index + 1) +  " : " + getTitle(index + 1));
+        //getTitle(index + 1);
+        System.out.println(String.valueOf(index + 1) +  " : " + getTitle(index + 1));
     }
 
 }
