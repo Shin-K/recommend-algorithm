@@ -791,7 +791,7 @@
       <option name="presentableId" value="Default" />
       <updated>1507698081339</updated>
       <workItem from="1507698084718" duration="65383000" />
-      <workItem from="1508679386679" duration="12202000" />
+      <workItem from="1508679386679" duration="12227000" />
     </task>
     <task id="LOCAL-00001" summary="1-1 finished (but should be changed later)">
       <created>1507963559865</created>
@@ -835,11 +835,18 @@
       <option name="project" value="LOCAL" />
       <updated>1508914005784</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="RatingMatrix is still being fixed">
+      <created>1508914032656</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1508914032656</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77585000" />
+    <option name="totallyTimeSpent" value="77610000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
