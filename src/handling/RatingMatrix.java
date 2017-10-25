@@ -199,7 +199,7 @@ public class RatingMatrix {
             movieTitle.loadTitles();
             System.out.println("〜No." + movie1 + " & No." + movie2 + "映画のタイトルとそれを視聴したユーザーの一覧〜");
             System.out.println("タイトル : " + movieTitle.getTitle(movie1) + ", " + movieTitle.getTitle(movie2));
-            System.out.println("ユーザーID");
+            System.out.print("ユーザーID : ");
         } else {
             System.out.println("〜No." + movie1 + " & No." + movie2 + "映画を観たユーザーと彼らによる評価〜");
             System.out.println("ユーザーID    No." + movie1 + "映画の評価値    No." + movie2 + "映画の評価値");
@@ -213,7 +213,7 @@ public class RatingMatrix {
                 int rating1 = getRating(tmpUserId,movie1);
                 int rating2 = getRating(tmpUserId,movie2);
                 if (printTitleTable) {
-                    System.out.println(tmpUserId);
+                    System.out.print(tmpUserId + " ");
                 }
                 else System.out.printf("%-12d    %-10d    %10d\n", tmpUserId, rating1,rating2);
             }
