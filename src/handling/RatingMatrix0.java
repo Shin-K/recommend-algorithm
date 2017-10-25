@@ -9,7 +9,7 @@ import java.util.*;
 /**
  * Created by Luis on 2017/10/20.
  */
-public class RatingMatrix {
+public class RatingMatrix0 {
     private BufferedReader in = null;
     private final String SPLITTER = "::";
     private String[] tempData;
@@ -51,10 +51,8 @@ public class RatingMatrix {
     }
 
 
-    public static int getRating(int id1, int id2, boolean movie2UserFlag){
-        if (movie2UserFlag) return ratingMatrix.get(id2).get(id1);
-        else return ratingMatrix.get(id1).get(id2);
-
+    public static int getRating(int userId, int movieId){
+        return ratingMatrix.get(userId).get(movieId);
     }
 
     public static void putData(int userId, int movieId, int rating){
@@ -81,7 +79,7 @@ public class RatingMatrix {
         return map.get(id).iterator();
     }*/
 
-/*    public static void printUserRatingList(int movieId){
+    public static void printUserRatingList(int movieId){
         if (!movieId2User.containsKey(movieId)) return;
 
         Iterator<Integer> userIds = movieId2User.get(movieId).iterator();
@@ -105,7 +103,7 @@ public class RatingMatrix {
             int rating = getRating(userId,tmpMovieId);
             System.out.printf("%-10d    %-10d\n", tmpMovieId, rating);
         }
-    }*/
+    }
 
 /*    public static void printFunction(int arg, Iterator<Integer> id){
         while (id.hasNext()){
@@ -116,45 +114,24 @@ public class RatingMatrix {
         }
     }*/
 
-    public static List<IdAndRating> makeListFrom2Ids(int id1, int id2, List<IdAndRating> list, boolean movie2UserFlag){
-
-        Map<Integer,Set<Integer>> id2Set;
-        if (movie2UserFlag) id2Set = movieId2User;
-        else id2Set = userId2Movie;
-
-        if (!id2Set.containsKey(id1) || !id2Set.containsKey(id2)) {
-            //System.out.println("ユーザーNo." + user1 + "とユーザーNo." + user2 + "の両者とも観た映画はありません。");
-            return list;
+    public static void printMovieRatingListFrom2Users(int user1, int user2, boolean printTitleTable){
+        if (!userId2Movie.containsKey(user1) || !userId2Movie.containsKey(user2)) {
+            System.out.println("ユーザーNo." + user1 + "とユーザーNo." + user2 + "の両者とも観た映画はありません。");
+            return;
         } else {
-            Set<Integer> intersection = new TreeSet<>(id2Set.get(id1));
-            intersection.retainAll(id2Set.get(id2));
-
-            for (int anId : intersection){
-                //TODO このままだと、任意のふたつのMovieIDを入力に取る時、それらをgetRatingの第一引数（USerIDにすべきところ）に入れてしまっている
-                IdAndRating one = new IdAndRating(anId,getRating(id1,anId,movie2UserFlag),getRating(id2,anId,movie2UserFlag));
-                list.add(one);
-            }
-            Collections.sort(list);
-
-            return list;
-
-
-/*            if (intersection.size() == 0) {
+            Set<Integer> intersection = new TreeSet<>(userId2Movie.get(user1));
+            intersection.retainAll(userId2Movie.get(user2));
+            if (intersection.size() == 0) {
                 System.out.println("ユーザーNo." + user1 + "とユーザーNo." + user2 + "の両者とも観た映画はありません。");
                 return;
-            }*/
+            }
         }
 /*        if (!userId2Movie.containsKey(user1) || !userId2Movie.containsKey(user2)) {
             System.out.println(user1 + "と" + user2 + "が両者とも観た映画はありません。");
             return;
         }*/
-    }
 
-/*    public static void printMovieRatingListFrom2Users(List<IdAndRating> list, boolean printTitleTable){
         MovieTitle movieTitle = new MovieTitle();
-        Iterator<IdAndRating> iterator = list.iterator();
-
-
         if (printTitleTable){
             movieTitle.loadTitles();
             System.out.println("〜No." + user1 + " & No." + user2 + "ユーザーが観た映画タイトル一覧〜");
@@ -178,9 +155,9 @@ public class RatingMatrix {
             }
 
         }
-    }*/
+    }
 
-/*    public static void printUserRatingListFrom2Movies(int movie1, int movie2, boolean printTitleTable){
+    public static void printUserRatingListFrom2Movies(int movie1, int movie2, boolean printTitleTable){
         if (!movieId2User.containsKey(movie1) || !movieId2User.containsKey(movie2)) {
             System.out.println("No." + movie1 + "映画とNo." + movie2 + "映画の2つとも観たユーザーはいません。");
             return;
@@ -200,7 +177,7 @@ public class RatingMatrix {
             movieTitle.loadTitles();
             System.out.println("〜No." + movie1 + " & No." + movie2 + "映画のタイトルとそれを視聴したユーザーの一覧〜");
             System.out.println("タイトル : " + movieTitle.getTitle(movie1) + ", " + movieTitle.getTitle(movie2));
-            System.out.println("ユーザーID");
+            System.out.print("ユーザーID : ");
         } else {
             System.out.println("〜No." + movie1 + " & No." + movie2 + "映画を観たユーザーと彼らによる評価〜");
             System.out.println("ユーザーID    No." + movie1 + "映画の評価値    No." + movie2 + "映画の評価値");
@@ -214,12 +191,12 @@ public class RatingMatrix {
                 int rating1 = getRating(tmpUserId,movie1);
                 int rating2 = getRating(tmpUserId,movie2);
                 if (printTitleTable) {
-                    System.out.println(tmpUserId);
+                    System.out.print(tmpUserId + " ");
                 }
                 else System.out.printf("%-12d    %-10d    %10d\n", tmpUserId, rating1,rating2);
             }
 
         }
-    }*/
+    }
 
 }
