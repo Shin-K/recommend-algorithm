@@ -25,7 +25,7 @@ public class HandleUserTrainRatings {
         //ratingMatrix.printUserRatingList(movie1);
         //ratingMatrix.printMovieRatingList(user1);
         //ratingMatrix.printMovieRatingListFrom2Users(user1,user2,printTitleTable);
-        ratingMatrix.printUserRatingListFrom2Movies(movie1,movie2,printTitleTable);
+        //ratingMatrix.printUserRatingListFrom2Movies(movie1,movie2,printTitleTable);
 
     }
 

@@ -17,13 +17,15 @@ public class Test1_3 {
     private static final int user2 = 5;
     private static final boolean printTitleTable = false;
     private static final int USERNUM = 100;
-    private static final boolean movie2UserFlag = false;
     private static final int COUNT = 1000;
     private static long sumCalcTime = 0;
     private static String user2List1 = "人の時、任意の二つのUserIDを入力に取り、";
     private static String user2List2 = "両方のユーザが見た映画のMovieIdとその映画のRatingのリストを出力する平均時間 : ";
     private static String movie2List1 = "人の時、任意の二つのMovieIDを入力に取り、";
     private static String movie2List2 = "両方の映画を見たユーザのUserIdとそのユーザが与えたRatingのリストを出力する平均時間 : ";
+
+    private static final boolean movie2UserFlag = false;
+
 
     public static void main(String[] args){
         List<IdAndRating> list = new ArrayList<>();
@@ -35,12 +37,12 @@ public class Test1_3 {
         sumCalcTime = 0;
         measureCalculateTimeFrom2Ids(list,ratingMatrix);
         if (movie2UserFlag) {
-            System.out.println(USERNUM + user2List1);
-            System.out.println(user2List2 + sumCalcTime/COUNT + "(nanosec)");
-        }
-        else {
             System.out.println(USERNUM + movie2List1);
             System.out.println(movie2List2 + sumCalcTime/COUNT + "(nanosec)");
+        }
+        else {
+            System.out.println(USERNUM + user2List1);
+            System.out.println(user2List2 + sumCalcTime/COUNT + "(nanosec)");
         }
 
 

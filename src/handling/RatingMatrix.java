@@ -130,7 +130,6 @@ public class RatingMatrix {
             intersection.retainAll(id2Set.get(id2));
 
             for (int anId : intersection){
-                //TODO このままだと、任意のふたつのMovieIDを入力に取る時、それらをgetRatingの第一引数（USerIDにすべきところ）に入れてしまっている
                 IdAndRating one = new IdAndRating(anId,getRating(id1,anId,movie2UserFlag),getRating(id2,anId,movie2UserFlag));
                 list.add(one);
             }
