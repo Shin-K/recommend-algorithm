@@ -20,12 +20,12 @@ public class HandleUserTrainRatings {
     public static void main(String[] args){
         List<IdAndRating> user1List = new ArrayList<>();
         List<IdAndRating> user2List = new ArrayList<>();
-        RatingMatrix ratingMatrix = new RatingMatrix();
-        ratingMatrix.loadData(decideFilePath(userNum));
+        RatingMatrix0 ratingMatrix0 = new RatingMatrix0();
+        ratingMatrix0.loadData(decideFilePath(userNum));
         //ratingMatrix.printUserRatingList(movie1);
         //ratingMatrix.printMovieRatingList(user1);
         //ratingMatrix.printMovieRatingListFrom2Users(user1,user2,printTitleTable);
-        //ratingMatrix.printUserRatingListFrom2Movies(movie1,movie2,printTitleTable);
+        ratingMatrix0.printUserRatingListFrom2Movies(movie1,movie2,printTitleTable);
 
     }
 

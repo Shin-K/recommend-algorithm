@@ -1,5 +1,9 @@
 package handling;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -17,7 +21,7 @@ public class Test1_3 {
     private static final int user2 = 5;
     private static final boolean printTitleTable = false;
     private static final int USERNUM = 100;
-    private static final int COUNT = 1000;
+    private static final int COUNT = 10000;
     private static long sumCalcTime = 0;
     private static String user2List1 = "人の時、任意の二つのUserIDを入力に取り、";
     private static String user2List2 = "両方のユーザが見た映画のMovieIdとその映画のRatingのリストを出力する平均時間 : ";
@@ -30,20 +34,54 @@ public class Test1_3 {
     public static void main(String[] args){
         List<IdAndRating> list = new ArrayList<>();
         RatingMatrix ratingMatrix = new RatingMatrix();
-        ratingMatrix.loadData(decideFilePath(USERNUM));
+        String fileName = "CalculateTime1-3-4-2.csv";
+        //TODO try-catchでユーザー数を変化させて、結果をcsv書き込み、要領はTest1-2と一緒
+
+        try {
+            Random rand = new Random();
+            rand.setSeed(100);
+            PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(fileName)));
+
+
+            for (int number = 100; number <= 1600; number = number*2){
+                //System.out.println("print debug1...");
+                ratingMatrix.loadData(decideFilePath(number));
+
+                sumCalcTime = 0;
+                for (int i = 0;i < COUNT;i++) {
+                    //System.out.println("print debug2...");
+                    measureCalculateTimeFromId(list,ratingMatrix,rand);
+                    //measureCalculateTimeFrom2Ids(list,ratingMatrix,rand);
+                }
+                //System.out.println("print debug3...");
+                double time = sumCalcTime / COUNT;
+
+                //ユーザー数、そのユーザー数での平均計測時間のcsv書き出し
+                pw.print(String.valueOf(number));
+                pw.print(",");
+                pw.println(String.valueOf(time));
+                //System.out.println("print debug4...");
+
+
+            }
+            pw.close();
+
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+
         //ratingMatrix.printUserRatingList(movie1);
         //ratingMatrix.printMovieRatingList(user1);
 
-        sumCalcTime = 0;
-        measureCalculateTimeFrom2Ids(list,ratingMatrix);
-        if (movie2UserFlag) {
+/*        if (movie2UserFlag) {
             System.out.println(USERNUM + movie2List1);
             System.out.println(movie2List2 + sumCalcTime/COUNT + "(nanosec)");
         }
         else {
             System.out.println(USERNUM + user2List1);
             System.out.println(user2List2 + sumCalcTime/COUNT + "(nanosec)");
-        }
+        }*/
 
 
         //ratingMatrix.printMovieRatingListFrom2Users(list,printTitleTable);
@@ -51,12 +89,22 @@ public class Test1_3 {
 
     }
 
-    public static void measureCalculateTimeFrom2Ids(List<IdAndRating> list, RatingMatrix ratingMatrix){
-        Random rand = new Random();
-        rand.setSeed(100);
+    public static void measureCalculateTimeFromId(List<IdAndRating> list, RatingMatrix ratingMatrix, Random rand){
 
+        int id;
+        if (movie2UserFlag) id = rand.nextInt(TITLES) + 1;
+        else id = rand.nextInt(USERNUM) + 1;
 
-        for (int i = 0;i < COUNT; i++){
+        long start = System.nanoTime();
+        //System.out.print("1");
+        list = ratingMatrix.makeListFromId(id,list,movie2UserFlag);
+        //System.out.println("2");
+        long end = System.nanoTime();
+        sumCalcTime += end - start;
+    }
+
+    public static void measureCalculateTimeFrom2Ids(List<IdAndRating> list, RatingMatrix ratingMatrix, Random rand){
+
             int id1,id2;
             if (movie2UserFlag) {
                 id1 = rand.nextInt(TITLES) + 1;
@@ -67,11 +115,13 @@ public class Test1_3 {
             }
 
             long start = System.nanoTime();
+            //System.out.print("1");
             list = ratingMatrix.makeListFrom2Ids(id1,id2,list,movie2UserFlag);
+            //System.out.println("2");
             long end = System.nanoTime();
             sumCalcTime += end - start;
-        }
     }
+
 
     public static String decideFilePath(int userNum){
         return filePath1 + String.valueOf(userNum) + filePath2;

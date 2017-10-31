@@ -5,6 +5,11 @@ package handling;
  */
 public class IdAndRating implements Comparable<IdAndRating> {
 
+    public IdAndRating(int id,int rating1){
+        this.id = id;
+        this.rating1 = rating1;
+    }
+
     public IdAndRating(int id, int rating1,int rating2){
         this.id = id;
         this.rating1 = rating1;

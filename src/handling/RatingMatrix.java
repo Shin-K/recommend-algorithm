@@ -116,6 +116,30 @@ public class RatingMatrix {
         }
     }*/
 
+    public static List<IdAndRating> makeListFromId(int id, List<IdAndRating> list, boolean movie2UserFlag) {
+
+        Map<Integer, Set<Integer>> id2Set;
+        if (movie2UserFlag) id2Set = movieId2User;
+        else id2Set = userId2Movie;
+
+        if (!id2Set.containsKey(id)) {
+            //System.out.println("ユーザーNo." + user1 + "とユーザーNo." + user2 + "の両者とも観た映画はありません。");
+            return list;
+        } else {
+            Set<Integer> valueMap = new TreeSet<>(id2Set.get(id));
+
+            for (int valueId : valueMap) {
+                IdAndRating one = new IdAndRating(valueId, getRating(id, valueId, movie2UserFlag));
+                //System.out.println(id + "," + valueId + " : " + getRating(id,valueId,movie2UserFlag));
+                list.add(one);
+            }
+            Collections.sort(list);
+
+            return list;
+
+        }
+    }
+
     public static List<IdAndRating> makeListFrom2Ids(int id1, int id2, List<IdAndRating> list, boolean movie2UserFlag){
 
         Map<Integer,Set<Integer>> id2Set;
@@ -137,11 +161,6 @@ public class RatingMatrix {
 
             return list;
 
-
-/*            if (intersection.size() == 0) {
-                System.out.println("ユーザーNo." + user1 + "とユーザーNo." + user2 + "の両者とも観た映画はありません。");
-                return;
-            }*/
         }
 /*        if (!userId2Movie.containsKey(user1) || !userId2Movie.containsKey(user2)) {
             System.out.println(user1 + "と" + user2 + "が両者とも観た映画はありません。");
