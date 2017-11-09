@@ -185,15 +185,21 @@ public class RatingMatrix0 {
 
         Iterator<Integer> userIds = movieId2User.get(movie1).iterator();
 
+        int loopCount = 1;
+        System.out.println();
+
         while (userIds.hasNext()){
             int tmpUserId = userIds.next();
             if (userId2Movie.get(tmpUserId).contains(movie2)){
                 int rating1 = getRating(tmpUserId,movie1);
                 int rating2 = getRating(tmpUserId,movie2);
                 if (printTitleTable) {
-                    System.out.print(tmpUserId + " ");
+                    if (loopCount % 10 == 0) System.out.println(tmpUserId + " ");
+                    else System.out.print(tmpUserId + " ");
                 }
                 else System.out.printf("%-12d    %-10d    %10d\n", tmpUserId, rating1,rating2);
+                loopCount++;
+
             }
 
         }

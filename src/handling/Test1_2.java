@@ -27,7 +27,7 @@ public class Test1_2 {
                     long start = System.nanoTime();
                     for (int j = 0; j < count; j++) {
                         for (int getTitle = 0; getTitle < titleNumbersToGet;getTitle++) {
-                            movieTitle.printTable(getTitle);
+                            //movieTitle.printTable(getTitle);
                         }
                     }
                     long end = System.nanoTime();
