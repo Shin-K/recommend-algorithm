@@ -35,8 +35,6 @@ public class RatingMatrix {
                 putMovieId2User(atMovie,atUser);
                 putUserId2Movie(atUser,atMovie);
             }
-        } catch (FileNotFoundException e){
-            e.printStackTrace();
         } catch (IOException e){
             e.printStackTrace();
         } finally {
@@ -48,6 +46,20 @@ public class RatingMatrix {
                 }
             }
         }
+    }
+
+    public static boolean checkIdExists(int id1, int id2, boolean movie2UserFlag){
+        if (movie2UserFlag){
+            if (ratingMatrix.containsKey(id2)){
+                if (ratingMatrix.get(id2).containsKey(id1)) return true;
+            }
+        }
+        else {
+            if (ratingMatrix.containsKey(id1)){
+                if (ratingMatrix.get(id1).containsKey(id2)) return true;
+            }
+        }
+        return false;
     }
 
 

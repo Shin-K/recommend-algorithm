@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4faf5942-29a2-43de-be45-08aaf9b1f167" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/handling/Test1_4.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/handling/HandleUserTrainRatings.java" afterPath="$PROJECT_DIR$/src/handling/HandleUserTrainRatings.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/handling/RatingMatrix0.java" afterPath="$PROJECT_DIR$/src/handling/RatingMatrix0.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/handling/Test1_2.java" afterPath="$PROJECT_DIR$/src/handling/Test1_2.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/handling/RatingMatrix.java" afterPath="$PROJECT_DIR$/src/handling/RatingMatrix.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/handling/Test1_3.java" afterPath="$PROJECT_DIR$/src/handling/Test1_3.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -95,11 +94,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Test1_3.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Test1_3.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/handling/Test1_3.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="34" column="51" lean-forward="true" selection-start-line="34" selection-start-column="51" selection-end-line="34" selection-end-column="51" />
+            <state relative-caret-position="-378">
+              <caret line="65" column="13" lean-forward="true" selection-start-line="65" selection-start-column="13" selection-end-line="65" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -107,11 +106,21 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="Test1_4.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/handling/Test1_4.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1005">
+              <caret line="67" column="18" lean-forward="false" selection-start-line="67" selection-start-column="18" selection-end-line="67" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="RatingMatrix.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/handling/RatingMatrix.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2040">
-              <caret line="20" column="44" lean-forward="false" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="44" />
+            <state relative-caret-position="255">
+              <caret line="28" column="57" lean-forward="true" selection-start-line="28" selection-start-column="57" selection-end-line="28" selection-end-column="57" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -128,26 +137,6 @@
                 <element signature="e#403#404#0" expanded="true" />
                 <element signature="e#428#429#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="10User_train_Ratings.dat" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/exp_data/10User_train_Ratings.dat">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="615">
-              <caret line="41" column="7" lean-forward="false" selection-start-line="41" selection-start-column="7" selection-end-line="41" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="100User_train_ratings.dat" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/exp_data/100User_train_ratings.dat">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="33585">
-              <caret line="2239" column="7" lean-forward="false" selection-start-line="2239" selection-start-column="0" selection-end-line="2239" selection-end-column="7" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -198,12 +187,13 @@
         <option value="$PROJECT_DIR$/src/handling/IdAndRatingFrom2Users.java" />
         <option value="$PROJECT_DIR$/src/handling/Report1_3_2and3.java" />
         <option value="$PROJECT_DIR$/src/handling/IdAndRating.java" />
-        <option value="$PROJECT_DIR$/src/handling/RatingMatrix.java" />
         <option value="$PROJECT_DIR$/src/handling/PrintRatingTable.java" />
         <option value="$PROJECT_DIR$/src/handling/Test1_2.java" />
-        <option value="$PROJECT_DIR$/src/handling/Test1_3.java" />
         <option value="$PROJECT_DIR$/src/handling/HandleUserTrainRatings.java" />
         <option value="$PROJECT_DIR$/src/handling/RatingMatrix0.java" />
+        <option value="$PROJECT_DIR$/src/handling/Test1_3.java" />
+        <option value="$PROJECT_DIR$/src/handling/RatingMatrix.java" />
+        <option value="$PROJECT_DIR$/src/handling/Test1_4.java" />
       </list>
     </option>
   </component>
@@ -214,10 +204,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1280" />
-    <option name="y" value="-925" />
-    <option name="width" value="1080" />
-    <option name="height" value="1920" />
+    <option name="width" value="1280" />
+    <option name="height" value="800" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -323,7 +311,7 @@
       <recent name="$PROJECT_DIR$/src/handling" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.HandleUserTrainRatings">
+  <component name="RunManager" selected="Application.Test1_4">
     <configuration default="false" name="PrintRatingTable" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -384,14 +372,14 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="false" name="Report1_3_2and3" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Test1_3" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="handling.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="MAIN_CLASS_NAME" value="handling.Report1_3_2and3" />
+      <option name="MAIN_CLASS_NAME" value="handling.Test1_3" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" />
@@ -404,14 +392,14 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="false" name="Test1_3" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Test1_4" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="handling.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="MAIN_CLASS_NAME" value="handling.Test1_3" />
+      <option name="MAIN_CLASS_NAME" value="handling.Test1_4" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" />
@@ -785,16 +773,16 @@
       <item index="0" class="java.lang.String" itemvalue="Application.PrintRatingTable" />
       <item index="1" class="java.lang.String" itemvalue="Application.Test1_2" />
       <item index="2" class="java.lang.String" itemvalue="Application.HandleUserTrainRatings" />
-      <item index="3" class="java.lang.String" itemvalue="Application.Report1_3_2and3" />
-      <item index="4" class="java.lang.String" itemvalue="Application.Test1_3" />
+      <item index="3" class="java.lang.String" itemvalue="Application.Test1_3" />
+      <item index="4" class="java.lang.String" itemvalue="Application.Test1_4" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.HandleUserTrainRatings" />
-        <item index="1" class="java.lang.String" itemvalue="Application.Test1_2" />
-        <item index="2" class="java.lang.String" itemvalue="Application.PrintRatingTable" />
-        <item index="3" class="java.lang.String" itemvalue="Application.Test1_3" />
-        <item index="4" class="java.lang.String" itemvalue="Application.Report1_3_2and3" />
+        <item index="0" class="java.lang.String" itemvalue="Application.Test1_4" />
+        <item index="1" class="java.lang.String" itemvalue="Application.HandleUserTrainRatings" />
+        <item index="2" class="java.lang.String" itemvalue="Application.Test1_2" />
+        <item index="3" class="java.lang.String" itemvalue="Application.PrintRatingTable" />
+        <item index="4" class="java.lang.String" itemvalue="Application.Test1_3" />
       </list>
     </recent_temporary>
   </component>
@@ -810,7 +798,7 @@
       <updated>1507698081339</updated>
       <workItem from="1507698084718" duration="65383000" />
       <workItem from="1508679386679" duration="13831000" />
-      <workItem from="1509075044084" duration="15958000" />
+      <workItem from="1509075044084" duration="26729000" />
     </task>
     <task id="LOCAL-00001" summary="1-1 finished (but should be changed later)">
       <created>1507963559865</created>
@@ -882,11 +870,18 @@
       <option name="project" value="LOCAL" />
       <updated>1509451173739</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="1-3 finished">
+      <created>1510239153141</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1510239153146</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="95172000" />
+    <option name="totallyTimeSpent" value="105943000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -898,7 +893,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1280" y="-925" width="1080" height="1920" extended-state="0" />
+    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -908,21 +903,21 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.095568605" sideWeight="0.15277778" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23771581" sideWeight="0.15625" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.095568605" sideWeight="0.8472222" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23771581" sideWeight="0.84375" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2431611" sideWeight="0.49375" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15925926" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.134375" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3997344" sideWeight="0.496875" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -942,13 +937,15 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="1-1 finished (but should be changed later)" />
     <MESSAGE value="1-2 finished" />
-    <MESSAGE value="1-3 finished" />
     <MESSAGE value="RatingMatrix is still being fixed" />
     <MESSAGE value="RatingMatrix should be changed, but report 1-3-4 is completed" />
-    <option name="LAST_COMMIT_MESSAGE" value="RatingMatrix should be changed, but report 1-3-4 is completed" />
+    <MESSAGE value="1-3 finished" />
+    <option name="LAST_COMMIT_MESSAGE" value="1-3 finished" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="2" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="antWorkspaceConfiguration">
@@ -1238,16 +1235,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/handling/RatingMatrix.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2040">
-          <caret line="20" column="44" lean-forward="false" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/handling/Test1_2.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="615">
@@ -1276,13 +1263,39 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/res/exp_data/1600User_train_ratings.dat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="12" column="7" lean-forward="true" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/handling/Test1_3.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="34" column="51" lean-forward="true" selection-start-line="34" selection-start-column="51" selection-end-line="34" selection-end-column="51" />
+        <state relative-caret-position="-378">
+          <caret line="65" column="13" lean-forward="true" selection-start-line="65" selection-start-column="13" selection-end-line="65" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/handling/RatingMatrix.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="28" column="57" lean-forward="true" selection-start-line="28" selection-start-column="57" selection-end-line="28" selection-end-column="57" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/handling/Test1_4.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1005">
+          <caret line="67" column="18" lean-forward="false" selection-start-line="67" selection-start-column="18" selection-end-line="67" selection-end-column="18" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -12,8 +12,8 @@ import java.util.Random;
  * Created by Luis on 2017/10/25.
  */
 public class Test1_3 {
-    private static final String filePath1 = "res/exp_data/";
-    private static final String filePath2 = "User_train_ratings.dat";
+    private static final String FILE_PATH1 = "res/exp_data/";
+    private static final String FILE_PATH2 = "User_train_ratings.dat";
     private static final int TITLES = 3952;
     private static final int movie1 = 5;
     private static final int movie2 = 10;
@@ -124,6 +124,6 @@ public class Test1_3 {
 
 
     public static String decideFilePath(int userNum){
-        return filePath1 + String.valueOf(userNum) + filePath2;
+        return FILE_PATH1 + String.valueOf(userNum) + FILE_PATH2;
     }
 }
