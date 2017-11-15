@@ -48,7 +48,7 @@ public class RatingMatrix {
         }
     }
 
-    public static boolean checkIdExists(int id1, int id2, boolean movie2UserFlag){
+    public boolean checkIdExists(int id1, int id2, boolean movie2UserFlag){
         if (movie2UserFlag){
             if (ratingMatrix.containsKey(id2)){
                 if (ratingMatrix.get(id2).containsKey(id1)) return true;
@@ -63,26 +63,26 @@ public class RatingMatrix {
     }
 
 
-    public static int getRating(int id1, int id2, boolean movie2UserFlag){
+    public int getRating(int id1, int id2, boolean movie2UserFlag){
         if (movie2UserFlag) return ratingMatrix.get(id2).get(id1);
         else return ratingMatrix.get(id1).get(id2);
 
     }
 
-    public static void putData(int userId, int movieId, int rating){
+    public void putData(int userId, int movieId, int rating){
         if (!ratingMatrix.containsKey(userId)) ratingMatrix.put(userId,new HashMap<>());
         ratingMatrix.get(userId).put(movieId,rating);
         //System.out.println(ratingMatrix.toString());
     }
 
 
-    public static void putMovieId2User(int movieId,int userId){
+    public void putMovieId2User(int movieId,int userId){
         if(!movieId2User.containsKey(movieId)) movieId2User.put(movieId,new TreeSet<>());
         movieId2User.get(movieId).add(userId);
         //System.out.println(movieId2User.toString());
     }
 
-    public static void putUserId2Movie(int userId,int movieId){
+    public void putUserId2Movie(int userId,int movieId){
         if(!userId2Movie.containsKey(userId)) userId2Movie.put(userId,new TreeSet<>());
         userId2Movie.get(userId).add(movieId);
         //System.out.println(userId2Movie.toString());
@@ -128,7 +128,7 @@ public class RatingMatrix {
         }
     }*/
 
-    public static List<IdAndRating> makeListFromId(int id, List<IdAndRating> list, boolean movie2UserFlag) {
+    public List<IdAndRating> makeListFromId(int id, List<IdAndRating> list, boolean movie2UserFlag) {
 
         Map<Integer, Set<Integer>> id2Set;
         if (movie2UserFlag) id2Set = movieId2User;
@@ -152,7 +152,7 @@ public class RatingMatrix {
         }
     }
 
-    public static List<IdAndRating> makeListFrom2Ids(int id1, int id2, List<IdAndRating> list, boolean movie2UserFlag){
+    public List<IdAndRating> makeListFrom2Ids(int id1, int id2, List<IdAndRating> list, boolean movie2UserFlag){
 
         Map<Integer,Set<Integer>> id2Set;
         if (movie2UserFlag) id2Set = movieId2User;
@@ -167,6 +167,7 @@ public class RatingMatrix {
 
             for (int anId : intersection){
                 IdAndRating one = new IdAndRating(anId,getRating(id1,anId,movie2UserFlag),getRating(id2,anId,movie2UserFlag));
+                //System.out.println(one.getId());
                 list.add(one);
             }
             Collections.sort(list);

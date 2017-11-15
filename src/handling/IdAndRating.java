@@ -4,6 +4,9 @@ package handling;
  * Created by Luis on 2017/10/25.
  */
 public class IdAndRating implements Comparable<IdAndRating> {
+    private int id;
+    private int rating1;
+    private int rating2;
 
     public IdAndRating(int id,int rating1){
         this.id = id;
@@ -34,9 +37,7 @@ public class IdAndRating implements Comparable<IdAndRating> {
         return rating2;
     }
 
-    private int id;
-    private int rating1;
-    private int rating2;
+
 
     @Override
     public int compareTo(IdAndRating o) {
