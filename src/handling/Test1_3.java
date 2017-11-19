@@ -20,8 +20,8 @@ public class Test1_3 {
     private static final int user1 = 1;
     private static final int user2 = 5;
     private static final boolean printTitleTable = true;
-    private static final int USERNUM = 100;
-    private static final int COUNT = 10000;
+    private static final int COUNT = 1000;
+    private static final int NUM_USER = 1600;
     private static long sumCalcTime = 0;
     private static String user2List1 = "人の時、任意の二つのUserIDを入力に取り、";
     private static String user2List2 = "両方のユーザが見た映画のMovieIdとその映画のRatingのリストを出力する平均時間 : ";
@@ -29,12 +29,16 @@ public class Test1_3 {
     private static String movie2List2 = "両方の映画を見たユーザのUserIdとそのユーザが与えたRatingのリストを出力する平均時間 : ";
 
     private static final boolean movie2UserFlag = true;
+    private static final boolean isChangeN = false;
+    private static final boolean isChangeM = true;
+
+
 
 
     public static void main(String[] args){
         List<IdAndRating> list = new ArrayList<>();
         RatingMatrix ratingMatrix = new RatingMatrix();
-        String fileName = "CalculateTime1-3-4-4.csv";
+        String fileName = "CalculateTime1-3-5-4.csv";
         //try-catchでユーザー数を変化させて、結果をcsv書き込み、要領はTest1-2と一緒
 
         try {
@@ -43,29 +47,47 @@ public class Test1_3 {
             PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(fileName)));
 
 
-            for (int number = 100; number <= 1600; number = number*2){
-                //System.out.println("print debug1...");
-                ratingMatrix.loadData(decideFilePath(number));
-
-                sumCalcTime = 0;
-                for (int i = 0;i < COUNT;i++) {
-                    //System.out.println("print debug2...");
-                    //measureCalculateTimeFrom2Ids(list,ratingMatrix,rand);
-                    measureCalculateTimeFromId(list,ratingMatrix,rand);
+            if (isChangeN){
+                //N変化させる時
+                for (int number = 100; number <= 1600; number = number*2){
+                    ratingMatrix.loadData(decideFilePath(number));
+                    sumCalcTime = 0;
+                    for (int i = 0;i < COUNT;i++) {
+                        //measureCalculateTimeFromId(list,ratingMatrix,rand,number); //課題1-3の1と2
+                        measureCalculateTimeFrom2Ids(list,ratingMatrix,rand,number); //課題1-3の3と4
+                    }
+                    double time = sumCalcTime / COUNT;
+                    //ユーザー数、そのユーザー数での平均計測時間のcsv書き出し
+                    pw.print(String.valueOf(number));
+                    pw.print(",");
+                    pw.println(String.valueOf(time));
                 }
-                //System.out.println("print debug3...");
-                double time = sumCalcTime / COUNT;
-
-                //ユーザー数、そのユーザー数での平均計測時間のcsv書き出し
-                pw.print(String.valueOf(number));
-                pw.print(",");
-                pw.println(String.valueOf(time));
-                //System.out.println("print debug4...");
-
-
             }
-            pw.close();
 
+            if (isChangeM) {
+                //M変化させる時
+                for (int num_movie = 1; num_movie <= TITLES;num_movie++) {
+                    if (num_movie % 100 != 0) continue;
+
+                    ratingMatrix.loadData(decideFilePath(NUM_USER),num_movie);
+                    System.out.println(num_movie);
+                    sumCalcTime = 0;
+
+                    for (int i = 0; i < COUNT;i++){
+                        measureCalculateTimeFromId(list,ratingMatrix,rand,num_movie); //課題1-3の1と2
+                        //measureCalculateTimeFrom2Ids(list,ratingMatrix,rand,num_movie); //課題1-3の3と4
+                        if (i % 200 == 0) System.out.print("- ");
+                    }
+                    System.out.println("calc fin");
+                    double time = sumCalcTime / COUNT;
+                    //ユーザー数、そのユーザー数での平均計測時間のcsv書き出し
+                    pw.print(String.valueOf(num_movie));
+                    pw.print(",");
+                    pw.println(String.valueOf(time));
+                }
+            }
+
+            pw.close();
         } catch (IOException e){
             e.printStackTrace();
         }
@@ -89,35 +111,43 @@ public class Test1_3 {
 
     }
 
-    public static void measureCalculateTimeFromId(List<IdAndRating> list, RatingMatrix ratingMatrix, Random rand){
+    public static void measureCalculateTimeFromId(List<IdAndRating> list, RatingMatrix ratingMatrix, Random rand,int limit){
 
         int id;
-        if (movie2UserFlag) id = rand.nextInt(TITLES) + 1;
-        else id = rand.nextInt(USERNUM) + 1;
+        if (movie2UserFlag && isChangeM || !movie2UserFlag && isChangeN) {
+            id = rand.nextInt(limit) + 1;
+        }
+        else if (movie2UserFlag) {
+            id = rand.nextInt(TITLES) + 1;
+        }
+        else {
+            id = rand.nextInt(NUM_USER) + 1;
+        }
 
         long start = System.nanoTime();
-        //System.out.print("1");
         list = ratingMatrix.makeListFromId(id,list,movie2UserFlag);
-        //System.out.println("2");
         long end = System.nanoTime();
         sumCalcTime += end - start;
     }
 
-    public static void measureCalculateTimeFrom2Ids(List<IdAndRating> list, RatingMatrix ratingMatrix, Random rand){
+    public static void measureCalculateTimeFrom2Ids(List<IdAndRating> list, RatingMatrix ratingMatrix, Random rand,int limit){
 
             int id1,id2;
-            if (movie2UserFlag) {
+            if (movie2UserFlag && isChangeM || !movie2UserFlag && isChangeN) {
+                id1 = rand.nextInt(limit) + 1;
+                id2 = rand.nextInt(limit) + 1;
+            }
+            else if (movie2UserFlag) {
                 id1 = rand.nextInt(TITLES) + 1;
                 id2 = rand.nextInt(TITLES) + 1;
-            } else {
-                id1 = rand.nextInt(USERNUM) + 1;
-                id2 = rand.nextInt(USERNUM) + 1;
+            }
+            else {
+                id1 = rand.nextInt(NUM_USER) + 1;
+                id2 = rand.nextInt(NUM_USER) + 1;
             }
 
             long start = System.nanoTime();
-            //System.out.print("1");
             list = ratingMatrix.makeListFrom2Ids(id1,id2,list,movie2UserFlag);
-            //System.out.println("2");
             long end = System.nanoTime();
             sumCalcTime += end - start;
     }

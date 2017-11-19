@@ -48,6 +48,37 @@ public class RatingMatrix {
         }
     }
 
+    //アイテム数を変化させる時は、movieIdの値が一定以下の時のみデータをputする
+    public void loadData(String filePath,int num_movie){
+        try{
+            in = new BufferedReader(new FileReader(filePath)); //読み込むファイルをパスで指定
+
+            while((readString = in.readLine()) != null) {
+                tempData = readString.split(SPLITTER);
+                atUser = Integer.parseInt(tempData[0]);
+                atMovie = Integer.parseInt(tempData[1]);
+                atRating = Integer.parseInt(tempData[2]);
+                if (atMovie <= num_movie){
+                    putData(atUser,atMovie,atRating);
+                    putMovieId2User(atMovie,atUser);
+                    putUserId2Movie(atUser,atMovie);
+                    //System.out.println(atUser + " " + atMovie);
+                }
+            }
+            //System.out.println("load fin");
+        } catch (IOException e){
+            e.printStackTrace();
+        } finally {
+            if(in != null){
+                try{
+                    in.close();
+                } catch (IOException e){
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
     public boolean checkIdExists(int id1, int id2, boolean movie2UserFlag){
         if (movie2UserFlag){
             if (ratingMatrix.containsKey(id2)){
