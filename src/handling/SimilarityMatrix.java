@@ -104,9 +104,18 @@ public class SimilarityMatrix {
     }
 
     //TODO 2.2 not finished
-    public double estimateRating(int user1,int user2,int movieId,boolean movie2UserFlag){
+    public double estimateRating(int userId,int movieId){
         double result = 0.0;
+        double atUserAverageRating = aUserAverageRating[userId];
+        List<IdAndRating> watchedUserList = new ArrayList<>();
+        boolean makeUserList = true;
 
+        watchedUserList = ratingMatrix.makeListFromId(movieId,watchedUserList,makeUserList);
+
+        //その映画を誰も見ていない場合
+        //if (watchedUserList.isEmpty()) return 0.0;
+        //データ中に、アイテムmovieIdを評価しているユーザはユーザuserIdしかいないとき、0を返す
+        if (watchedUserList.size() < 2 && watchedUserList.get(0).getId() == userId) return atUserAverageRating;
 
         return result;
     }
