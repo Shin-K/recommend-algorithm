@@ -1,7 +1,4 @@
-package handling;
-
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
@@ -20,6 +17,14 @@ public class RatingMatrix {
 
     private static Map<Integer,Set<Integer>> movieId2User = new HashMap<>();
     private static Map<Integer,Set<Integer>> userId2Movie = new HashMap<>();
+
+    public Map<Integer,Set<Integer>> getUserId2Movie(){
+        return userId2Movie;
+    }
+
+    public Set<Map.Entry<Integer,Map<Integer,Integer>>> makeEntrySet(){
+        return ratingMatrix.entrySet();
+    }
 
 
     public void loadData(String filePath){

@@ -1,5 +1,3 @@
-package handling;
-
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -111,7 +109,7 @@ public class Test1_3 {
 
     }
 
-    public static void measureCalculateTimeFromId(List<IdAndRating> list, RatingMatrix ratingMatrix, Random rand,int limit){
+    public static void measureCalculateTimeFromId(List<IdAndRating> list, RatingMatrix ratingMatrix, Random rand, int limit){
 
         int id;
         if (movie2UserFlag && isChangeM || !movie2UserFlag && isChangeN) {
@@ -130,7 +128,7 @@ public class Test1_3 {
         sumCalcTime += end - start;
     }
 
-    public static void measureCalculateTimeFrom2Ids(List<IdAndRating> list, RatingMatrix ratingMatrix, Random rand,int limit){
+    public static void measureCalculateTimeFrom2Ids(List<IdAndRating> list, RatingMatrix ratingMatrix, Random rand, int limit){
 
             int id1,id2;
             if (movie2UserFlag && isChangeM || !movie2UserFlag && isChangeN) {

@@ -1,5 +1,3 @@
-package handling;
-
 import java.io.*;
 
 /**
@@ -31,7 +29,7 @@ public class Test1_4 {
 
     }
 
-    public static void array2File(int number,RatingMatrix ratingMatrix) {
+    public static void array2File(int number, RatingMatrix ratingMatrix) {
         try {
             PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(fileName)));
 
