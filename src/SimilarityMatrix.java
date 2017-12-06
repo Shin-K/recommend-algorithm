@@ -113,7 +113,6 @@ public class SimilarityMatrix {
     }
 
     public void estimateRating(int userId,int movieId){
-        double result = 0.0;
         atUserAverageRating = aUserAverageRating[userId];
         List<IdAndRating> watchedUserList = new ArrayList<>();
         boolean makeUserList = true;
@@ -132,18 +131,15 @@ public class SimilarityMatrix {
 
 
         //式(2.3)の計算
-        double denominator = 0.0;
         double numerator = 0.0;
-        double sumOtherUserSimilarity = 0.0;
 
         for (IdAndRating otherUserElement : watchedUserList){
             int otherId = otherUserElement.getId();
             numerator += getSimilarity(userId,otherId)
                          * (ratingMatrix.getRating(otherId,movieId,movie2UserFlag) - aUserAverageRating[otherId]);
         }
-        denominator = absSumOtherUserSimilarity;
 
-        setEstimatedRating(userId,movieId,atUserAverageRating + (numerator / denominator));
+        setEstimatedRating(userId,movieId,atUserAverageRating + (numerator / absSumOtherUserSimilarity));
     }
 
 
