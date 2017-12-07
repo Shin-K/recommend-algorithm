@@ -100,12 +100,14 @@ public class RatingMatrix {
 
 
     public int getRating(int id1, int id2, boolean movie2UserFlag){
+        //System.out.println(id1 + " " + id2 + " " + String.valueOf(movie2UserFlag));
         if (movie2UserFlag) return ratingMatrix.get(id2).get(id1);
         else return ratingMatrix.get(id1).get(id2);
 
     }
 
     public void putData(int userId, int movieId, int rating){
+        if (userId == 2 && movieId == 7) System.out.println("debug");
         if (!ratingMatrix.containsKey(userId)) ratingMatrix.put(userId,new HashMap<>());
         ratingMatrix.get(userId).put(movieId,rating);
         //System.out.println(ratingMatrix.toString());
@@ -202,6 +204,7 @@ public class RatingMatrix {
             intersection.retainAll(id2Set.get(id2));
 
             for (int anId : intersection){
+                //if (id1 == 1 && id2 == 2) System.out.println(anId);
                 IdAndRating one = new IdAndRating(anId,getRating(id1,anId,movie2UserFlag),getRating(id2,anId,movie2UserFlag));
                 //System.out.println(one.getId());
                 list.add(one);

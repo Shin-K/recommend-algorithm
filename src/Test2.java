@@ -40,7 +40,8 @@ public class Test2 {
         for (user1 = 1; user1 <= NUM_USER; user1++){
             for (user2 = 1; user2 <= NUM_USER; user2++){
                 similarityMatrix.calcAndSetSimilarity(user1,user2);
-                System.out.print(round(similarityMatrix.getSimilarity(user1,user2)) + " ");
+                double tmp = round(similarityMatrix.getSimilarity(user1,user2));
+                System.out.print(tmp + " ");
             }
             System.out.println();
         }

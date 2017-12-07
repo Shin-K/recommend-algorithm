@@ -10,7 +10,7 @@ public class SimilarityMatrix {
     private double[][] similarity;
     private int[][] ratings;
     private static RatingMatrix ratingMatrix;
-    private static List<IdAndRating> intersection;
+    //private static List<IdAndRating> intersection;
     private double[][] estimatedRatings;
     private double atUserAverageRating;
     private double MSE;
@@ -29,7 +29,6 @@ public class SimilarityMatrix {
         //ratings = new int[num_user][TITLES];
         aUserAverageRating = new double[num_user];
         similarity = new double[num_user][num_user];
-        intersection = new ArrayList<>();
         estimatedRatings = new double[num_user][TITLES];
 
 
@@ -94,6 +93,7 @@ public class SimilarityMatrix {
         double denominator = 0.0;
         double denominator1 = 0.0;
         double denominator2 = 0.0;
+        List<IdAndRating> intersection = new ArrayList<>();
 
         intersection = makeIntersection(user1,user2,intersection,movie2UserFlag);
         for(IdAndRating element : intersection){
