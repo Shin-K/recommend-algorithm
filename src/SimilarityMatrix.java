@@ -66,7 +66,7 @@ public class SimilarityMatrix {
         for (int userIndex = 1; userIndex <= num_user; userIndex++) {
             sum_rating = 0;
             num_ratedItem = 0;
-            for (int titleIndex = 1; titleIndex <= TITLES; titleIndex++) {
+            for (int titleIndex = 1; titleIndex <= 10; titleIndex++) {
                 int tmpRating;
                 if (ratingMatrix.checkIdExists(userIndex,titleIndex,movie2UserFlag)) {
                     tmpRating = ratingMatrix.getRating(userIndex,titleIndex,movie2UserFlag);
@@ -111,7 +111,6 @@ public class SimilarityMatrix {
 
     }
 
-    //TODO 上手く計算できてない
     public void estimateRating(int userId,int movieId){
         double atUserAverageRating = aUserAverageRating[userId - 1];
         List<Integer> watchedUserList = new ArrayList<>();
@@ -122,14 +121,14 @@ public class SimilarityMatrix {
         //その映画を誰も見ていない場合
         //if (watchedUserList.isEmpty()) return 0.0;
         //データ中に、アイテムmovieIdを評価しているユーザはユーザuserIdしかいないとき、平均を推定値とする
-        if (watchedUserList.size() < 2 && watchedUserList.get(1) == null) {
+        if (watchedUserList.size() < 2 && watchedUserList.get(0) == userId) {
             setEstimatedRating(userId,movieId,atUserAverageRating);
             return;
         }
 
         //今見ているuserIdの人と、他の人との類似度の合計が0の時、ゼロ割を防ぐため平均を推定値とする
-        double absSumOtherUserSimilarity =0.0;
-        calcAbsSumOtherUserSimilarity(userId,absSumOtherUserSimilarity,watchedUserList);
+        //double absSumOtherUserSimilarity =0.0;
+        double absSumOtherUserSimilarity = calcAbsSumOtherUserSimilarity(userId,watchedUserList);
         if (isDenominatorZero(absSumOtherUserSimilarity)) {
             setEstimatedRating(userId,movieId,atUserAverageRating);
             return;
@@ -150,10 +149,12 @@ public class SimilarityMatrix {
 
 
 
-    public void calcAbsSumOtherUserSimilarity(int userId,double absSumOtherUserSimilarity, List<Integer> watchedUserList){
+    public double calcAbsSumOtherUserSimilarity(int userId, List<Integer> watchedUserList){
+        double result = 0.0;
         for (int element : watchedUserList){
-            absSumOtherUserSimilarity += Math.abs(getSimilarity(userId,element));
+            result += Math.abs(getSimilarity(userId,element));
         }
+        return result;
     }
 
 

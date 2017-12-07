@@ -107,7 +107,7 @@ public class RatingMatrix {
     }
 
     public void putData(int userId, int movieId, int rating){
-        if (userId == 2 && movieId == 7) System.out.println("debug");
+        //if (userId == 2 && movieId == 7) System.out.println("debug");
         if (!ratingMatrix.containsKey(userId)) ratingMatrix.put(userId,new HashMap<>());
         ratingMatrix.get(userId).put(movieId,rating);
         //System.out.println(ratingMatrix.toString());

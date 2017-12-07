@@ -11,8 +11,8 @@ public class Test2 {
     private static final String FILE_PATH2TRAIN = "User_train_ratings.dat";
     private static final String FILE_PATH2TEST = "User_test_ratings.dat";
     private static final String fileName = "100User_similarities.dat";
-    private static BufferedReader in = null;
     private static final String SPLITTER = "::";
+    private static BufferedReader in = null;
     private static final int NUM_USER = 10;
     private static final int MAX_USER = 1600;
 
@@ -20,15 +20,46 @@ public class Test2 {
 
     public static void main(String[] args){
         boolean doTrainNotTest = true;
+        String readString;
+        String[] tmpData;
+        int atUser, atMovie;
         SimilarityMatrix similarityMatrix = new SimilarityMatrix(NUM_USER,doTrainNotTest);
 
         //課題2-1 & レポート2-2-1
-        //printSimilarityMatrix(similarityMatrix);
+        printSimilarityMatrix(similarityMatrix);
+
+        try{
+            in = new BufferedReader(new FileReader(decideFilePathTest(NUM_USER))); //読み込むファイルをパスで指定
+
+            while((readString = in.readLine()) != null) {
+                tmpData = readString.split(SPLITTER);
+                atUser = Integer.parseInt(tmpData[0]);
+                atMovie = Integer.parseInt(tmpData[1]);
+
+                similarityMatrix.estimateRating(atUser,atMovie);
+                double tmp = similarityMatrix.getEstimatedRating(atUser,atMovie);
+                System.out.println("user" + atUser + "の" + "movie" + atMovie + "への推定評価値 -> " + tmp);
+
+            }
+        } catch (IOException e){
+            e.printStackTrace();
+        } finally {
+            if(in != null){
+                try{
+                    in.close();
+                } catch (IOException e){
+                    e.printStackTrace();
+                }
+            }
+        }
 
         //matrix2File(NUM_USER,similarityMatrix);
         //SimilarityMatrix similarityMatrix2 = new SimilarityMatrix(NUM_USER,doTrainNotTest); //出力用の行列
         //file2Matrix(fileName,similarityMatrix2);
 
+
+        //レポート2-2-2
+        //similarity2Rating(similarityMatrix);
 
         //課題2-2
         //similarity2Rating(similarityMatrix);
@@ -36,12 +67,13 @@ public class Test2 {
         //課題2-3
         double[] MSEs = new double[5];
         int loop = 0;
-        for (int users = 10; users <= 10;users *= 2){
+        int users = 10;
+        //for (int users = 10; users <= 10;users *= 2){
             MSEs[loop] = rateMSE(doTrainNotTest,users);
             loop++;
-        }
-        //レポート2-2-2
-        similarity2Rating(similarityMatrix);
+            //System.out.println(MSEs[loop]);
+        //}
+
 
     }
 
@@ -65,15 +97,16 @@ public class Test2 {
     public static void similarity2Rating(SimilarityMatrix similarityMatrix){
         for (int user = 1; user <= NUM_USER; user++){
             //以下はprintするときのみ
-            System.out.println("user" + user + "のRating推定値リスト");
-            for (int movie = 1; movie <= TITLES;movie++){
+            System.out.println("user" + user + "の推定評価値リスト");
+            for (int movie = 1; movie <= 10;movie++){
                 similarityMatrix.estimateRating(user,movie);
 
                 //以下はprintするときのみ
-                System.out.println("movie" + movie + "の評価 -> " + similarityMatrix.getEstimatedRating(user,movie));
+                double tmp = similarityMatrix.getEstimatedRating(user,movie);
+                if (movie % 5 == 0) System.out.println("movie" + movie + " -> " + String.format("%.2f",tmp));
+                else System.out.print("movie" + movie + " -> " + String.format("%.2f",tmp) + "  ");
             }
             //以下はprintするときのみ
-            System.out.println();
             System.out.println();
         }
     }
