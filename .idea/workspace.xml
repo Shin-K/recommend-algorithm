@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4faf5942-29a2-43de-be45-08aaf9b1f167" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/IdAndRating.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/HandleUserTrainRatings.java" afterPath="$PROJECT_DIR$/src/HandleUserTrainRatings.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/RatingMatrix.java" afterPath="$PROJECT_DIR$/src/RatingMatrix.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SimilarityMatrix.java" afterPath="$PROJECT_DIR$/src/SimilarityMatrix.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Test1_3.java" afterPath="$PROJECT_DIR$/src/Test1_3.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Test2.java" afterPath="$PROJECT_DIR$/src/Test2.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -38,13 +41,9 @@
       <file leaf-file-name="MovieTitle.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MovieTitle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
+            <state relative-caret-position="15">
               <caret line="18" column="11" lean-forward="false" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#1309#1310#0" expanded="false" />
-                <element signature="e#1356#1357#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -52,23 +51,20 @@
       <file leaf-file-name="Test1_4.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Test1_4.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="555">
-              <caret line="37" column="109" lean-forward="false" selection-start-line="37" selection-start-column="109" selection-end-line="37" selection-end-column="109" />
-              <folding>
-                <element signature="e#2402#2403#0" expanded="false" />
-                <element signature="e#2474#2475#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="113">
+              <caret line="38" column="30" lean-forward="true" selection-start-line="38" selection-start-column="30" selection-end-line="38" selection-end-column="30" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IdAndRating.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/IdAndRating.java">
+      <file leaf-file-name="RatingMatrix.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/RatingMatrix.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
-              <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+              <caret line="183" column="32" lean-forward="false" selection-start-line="183" selection-start-column="32" selection-end-line="183" selection-end-column="32" />
               <folding>
-                <element signature="e#479#480#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -77,21 +73,8 @@
       <file leaf-file-name="Test1_3.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Test1_3.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="900">
-              <caret line="66" column="74" lean-forward="false" selection-start-line="66" selection-start-column="74" selection-end-line="66" selection-end-column="74" />
-              <folding>
-                <element signature="e#5747#5748#0" expanded="false" />
-                <element signature="e#5819#5820#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RatingMatrix.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/RatingMatrix.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="206" column="18" lean-forward="false" selection-start-line="206" selection-start-column="18" selection-end-line="206" selection-end-column="18" />
+            <state relative-caret-position="1380">
+              <caret line="130" column="64" lean-forward="false" selection-start-line="130" selection-start-column="64" selection-end-line="130" selection-end-column="64" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -99,21 +82,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="10User_train_Ratings.dat" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/exp_data/10User_train_Ratings.dat">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="4" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SimilarityMatrix.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SimilarityMatrix.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SimilarityMatrix.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="23">
-              <caret line="95" column="59" lean-forward="false" selection-start-line="95" selection-start-column="59" selection-end-line="95" selection-end-column="59" />
+            <state relative-caret-position="58">
+              <caret line="113" column="16" lean-forward="false" selection-start-line="113" selection-start-column="16" selection-end-line="113" selection-end-column="16" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -121,14 +94,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Test2.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Test2.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Test2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="163">
-              <caret line="43" column="36" lean-forward="false" selection-start-line="43" selection-start-column="36" selection-end-line="43" selection-end-column="36" />
+            <state relative-caret-position="285">
+              <caret line="68" column="47" lean-forward="false" selection-start-line="68" selection-start-column="41" selection-end-line="68" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HandleUserTrainRatings.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/HandleUserTrainRatings.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="177">
+              <caret line="19" column="20" lean-forward="false" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -150,6 +133,7 @@
       <find>.size</find>
       <find>isChangeM</find>
       <find>similarity</find>
+      <find>interse</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -193,9 +177,11 @@
         <option value="$PROJECT_DIR$/src/handling/Test2.java" />
         <option value="$PROJECT_DIR$/src/handling/SimilarityMatrix.java" />
         <option value="$PROJECT_DIR$/src/handling/RatingMatrix.java" />
-        <option value="$PROJECT_DIR$/src/SimilarityMatrix.java" />
         <option value="$PROJECT_DIR$/src/RatingMatrix.java" />
+        <option value="$PROJECT_DIR$/src/Test1_3.java" />
+        <option value="$PROJECT_DIR$/src/HandleUserTrainRatings.java" />
         <option value="$PROJECT_DIR$/src/Test2.java" />
+        <option value="$PROJECT_DIR$/src/SimilarityMatrix.java" />
       </list>
     </option>
   </component>
@@ -784,7 +770,7 @@
       <workItem from="1509075044084" duration="56314000" />
       <workItem from="1510978741956" duration="8048000" />
       <workItem from="1511753822651" duration="13823000" />
-      <workItem from="1512532977860" duration="12563000" />
+      <workItem from="1512532977860" duration="20648000" />
     </task>
     <task id="LOCAL-00001" summary="1-1 finished (but should be changed later)">
       <created>1507963559865</created>
@@ -905,11 +891,18 @@
       <option name="project" value="LOCAL" />
       <updated>1512603884814</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="should have not made &quot;intersection&quot; static, which caused NullPointerException">
+      <created>1512610661986</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1512610661986</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="169962000" />
+    <option name="totallyTimeSpent" value="178047000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -927,13 +920,13 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934928" sideWeight="0.496875" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934928" sideWeight="0.49375" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.42231077" sideWeight="0.2171875" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.42231077" sideWeight="0.23125" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.42231077" sideWeight="0.7828125" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.42231077" sideWeight="0.76875" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2431611" sideWeight="0.49375" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -945,7 +938,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3997344" sideWeight="0.4625" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3997344" sideWeight="0.45625" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -973,7 +966,8 @@
     <MESSAGE value="1-3-5 finished" />
     <MESSAGE value="2 not finished" />
     <MESSAGE value="debugging NullPointerException" />
-    <option name="LAST_COMMIT_MESSAGE" value="debugging NullPointerException" />
+    <MESSAGE value="should have not made &quot;intersection&quot; static, which caused NullPointerException" />
+    <option name="LAST_COMMIT_MESSAGE" value="should have not made &quot;intersection&quot; static, which caused NullPointerException" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -991,25 +985,31 @@
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Test2.java</url>
-          <line>41</line>
-          <properties />
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Test2.java</url>
-          <line>43</line>
-          <properties />
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/SimilarityMatrix.java</url>
-          <line>107</line>
+          <line>106</line>
           <properties />
           <option name="timeStamp" value="17" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/SimilarityMatrix.java</url>
+          <line>119</line>
+          <properties />
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/SimilarityMatrix.java</url>
+          <line>130</line>
+          <properties />
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/SimilarityMatrix.java</url>
+          <line>124</line>
+          <properties />
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="18" />
+      <option name="time" value="21" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1032,9 +1032,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="24" lean-forward="false" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
-          <folding>
-            <element signature="e#479#480#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1052,11 +1050,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="20" column="11" lean-forward="false" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1309#1310#0" expanded="false" />
-            <element signature="e#1356#1357#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1085,8 +1079,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#5747#5748#0" expanded="false" />
-            <element signature="e#5819#5820#0" expanded="false" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1105,9 +1098,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" column="24" lean-forward="true" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
-          <folding>
-            <element signature="e#479#480#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1129,11 +1120,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="20" column="11" lean-forward="false" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1309#1310#0" expanded="false" />
-            <element signature="e#1356#1357#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1241,33 +1228,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/HandleUserTrainRatings.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7">
-          <caret line="13" column="39" lean-forward="false" selection-start-line="13" selection-start-column="39" selection-end-line="13" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/RatingMatrix0.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="158">
           <caret line="191" column="43" lean-forward="false" selection-start-line="191" selection-start-column="43" selection-end-line="191" selection-end-column="43" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MovieTitle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="18" column="11" lean-forward="false" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1309#1310#0" expanded="false" />
-            <element signature="e#1356#1357#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1295,17 +1260,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Test1_4.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="37" column="109" lean-forward="false" selection-start-line="37" selection-start-column="109" selection-end-line="37" selection-end-column="109" />
-          <folding>
-            <element signature="e#2402#2403#0" expanded="false" />
-            <element signature="e#2474#2475#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/exp_data/100User_test_ratings.dat">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1313,52 +1267,55 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Test1_3.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="900">
-          <caret line="66" column="74" lean-forward="false" selection-start-line="66" selection-start-column="74" selection-end-line="66" selection-end-column="74" />
-          <folding>
-            <element signature="e#5747#5748#0" expanded="false" />
-            <element signature="e#5819#5820#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/Movie.java" />
     <entry file="file://$PROJECT_DIR$/src/model/User.java" />
     <entry file="file://$PROJECT_DIR$/src/model/Rating.java" />
-    <entry file="file://$PROJECT_DIR$/res/exp_data/10User_train_Ratings.dat">
+    <entry file="file://$PROJECT_DIR$/src/IdAndRating.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="4" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+        <state relative-caret-position="180">
+          <caret line="12" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/RatingMatrix.java">
+    <entry file="file://$PROJECT_DIR$/src/MovieTitle.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="206" column="18" lean-forward="false" selection-start-line="206" selection-start-column="18" selection-end-line="206" selection-end-column="18" />
+        <state relative-caret-position="15">
+          <caret line="18" column="11" lean-forward="false" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Test1_4.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="38" column="30" lean-forward="true" selection-start-line="38" selection-start-column="30" selection-end-line="38" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/HandleUserTrainRatings.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="19" column="20" lean-forward="false" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Test1_3.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1380">
+          <caret line="130" column="64" lean-forward="false" selection-start-line="130" selection-start-column="64" selection-end-line="130" selection-end-column="64" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/IdAndRating.java">
+    <entry file="file://$PROJECT_DIR$/src/RatingMatrix.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
-          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding>
-            <element signature="e#479#480#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SimilarityMatrix.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="95" column="59" lean-forward="false" selection-start-line="95" selection-start-column="59" selection-end-line="95" selection-end-column="59" />
+          <caret line="183" column="32" lean-forward="false" selection-start-line="183" selection-start-column="32" selection-end-line="183" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1367,8 +1324,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Test2.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="43" column="36" lean-forward="false" selection-start-line="43" selection-start-column="36" selection-end-line="43" selection-end-column="36" />
+        <state relative-caret-position="285">
+          <caret line="68" column="47" lean-forward="false" selection-start-line="68" selection-start-column="41" selection-end-line="68" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/exp_data/10User_train_Ratings.dat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="4" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SimilarityMatrix.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="58">
+          <caret line="113" column="16" lean-forward="false" selection-start-line="113" selection-start-column="16" selection-end-line="113" selection-end-column="16" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

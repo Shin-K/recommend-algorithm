@@ -16,8 +16,8 @@ public class HandleUserTrainRatings {
     private static final int userNum = 1600;
 
     public static void main(String[] args){
-        List<IdAndRating> user1List = new ArrayList<>();
-        List<IdAndRating> user2List = new ArrayList<>();
+        List<Integer> user1List = new ArrayList<>();
+        List<Integer> user2List = new ArrayList<>();
         RatingMatrix0 ratingMatrix0 = new RatingMatrix0();
         ratingMatrix0.loadData(decideFilePath(userNum));
         //ratingMatrix0.printUserRatingList(movie1);

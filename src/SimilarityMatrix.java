@@ -12,7 +12,6 @@ public class SimilarityMatrix {
     private static RatingMatrix ratingMatrix;
     //private static List<IdAndRating> intersection;
     private double[][] estimatedRatings;
-    private double atUserAverageRating;
     private double MSE;
 
 
@@ -84,7 +83,7 @@ public class SimilarityMatrix {
 
     }
 
-    public List<IdAndRating> makeIntersection(int user1, int user2, List<IdAndRating> intersection, boolean movie2UserFlag){
+    public List<Integer> makeIntersection(int user1, int user2, List<Integer> intersection, boolean movie2UserFlag){
         return ratingMatrix.makeListFrom2Ids(user1,user2,intersection,movie2UserFlag);
     }
 
@@ -93,12 +92,12 @@ public class SimilarityMatrix {
         double denominator = 0.0;
         double denominator1 = 0.0;
         double denominator2 = 0.0;
-        List<IdAndRating> intersection = new ArrayList<>();
+        List<Integer> intersection = new ArrayList<>();
 
         intersection = makeIntersection(user1,user2,intersection,movie2UserFlag);
-        for(IdAndRating element : intersection){
-            double calc1 = (ratingMatrix.getRating(user1,element.getId(),movie2UserFlag) - aUserAverageRating[user1-1]);
-            double calc2 = (ratingMatrix.getRating(user2,element.getId(),movie2UserFlag) - aUserAverageRating[user2-1]);
+        for(int element : intersection){
+            double calc1 = (ratingMatrix.getRating(user1,element,movie2UserFlag) - aUserAverageRating[user1-1]);
+            double calc2 = (ratingMatrix.getRating(user2,element,movie2UserFlag) - aUserAverageRating[user2-1]);
             //分子の計算
             numerator += calc1 * calc2;
             //分母の計算
@@ -112,9 +111,10 @@ public class SimilarityMatrix {
 
     }
 
+    //TODO 上手く計算できてない
     public void estimateRating(int userId,int movieId){
-        atUserAverageRating = aUserAverageRating[userId];
-        List<IdAndRating> watchedUserList = new ArrayList<>();
+        double atUserAverageRating = aUserAverageRating[userId - 1];
+        List<Integer> watchedUserList = new ArrayList<>();
         boolean makeUserList = true;
 
         watchedUserList = ratingMatrix.makeListFromId(movieId,watchedUserList,makeUserList);
@@ -122,21 +122,26 @@ public class SimilarityMatrix {
         //その映画を誰も見ていない場合
         //if (watchedUserList.isEmpty()) return 0.0;
         //データ中に、アイテムmovieIdを評価しているユーザはユーザuserIdしかいないとき、平均を推定値とする
-        if (watchedUserList.size() < 2 && watchedUserList.get(0).getId() == userId) setEstimatedRating(userId,movieId,atUserAverageRating);
+        if (watchedUserList.size() < 2 && watchedUserList.get(1) == null) {
+            setEstimatedRating(userId,movieId,atUserAverageRating);
+            return;
+        }
 
         //今見ているuserIdの人と、他の人との類似度の合計が0の時、ゼロ割を防ぐため平均を推定値とする
         double absSumOtherUserSimilarity =0.0;
         calcAbsSumOtherUserSimilarity(userId,absSumOtherUserSimilarity,watchedUserList);
-        if (isDenominatorZero(absSumOtherUserSimilarity)) setEstimatedRating(userId,movieId,atUserAverageRating);
+        if (isDenominatorZero(absSumOtherUserSimilarity)) {
+            setEstimatedRating(userId,movieId,atUserAverageRating);
+            return;
+        }
 
 
         //式(2.3)の計算
         double numerator = 0.0;
 
-        for (IdAndRating otherUserElement : watchedUserList){
-            int otherId = otherUserElement.getId();
-            numerator += getSimilarity(userId,otherId)
-                         * (ratingMatrix.getRating(otherId,movieId,movie2UserFlag) - aUserAverageRating[otherId]);
+        for (int otherUserElement : watchedUserList){
+            numerator += getSimilarity(userId,otherUserElement)
+                         * (ratingMatrix.getRating(otherUserElement,movieId,movie2UserFlag) - aUserAverageRating[otherUserElement - 1]);
         }
 
         setEstimatedRating(userId,movieId,atUserAverageRating + (numerator / absSumOtherUserSimilarity));
@@ -145,9 +150,9 @@ public class SimilarityMatrix {
 
 
 
-    public void calcAbsSumOtherUserSimilarity(int userId,double absSumOtherUserSimilarity, List<IdAndRating> watchedUserList){
-        for (IdAndRating element : watchedUserList){
-            absSumOtherUserSimilarity += Math.abs(getSimilarity(userId,element.getId()));
+    public void calcAbsSumOtherUserSimilarity(int userId,double absSumOtherUserSimilarity, List<Integer> watchedUserList){
+        for (int element : watchedUserList){
+            absSumOtherUserSimilarity += Math.abs(getSimilarity(userId,element));
         }
     }
 

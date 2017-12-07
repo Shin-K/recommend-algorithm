@@ -34,7 +34,7 @@ public class Test1_3 {
 
 
     public static void main(String[] args){
-        List<IdAndRating> list = new ArrayList<>();
+        List<Integer> list = new ArrayList<>();
         RatingMatrix ratingMatrix = new RatingMatrix();
         String fileName = "CalculateTime1-3-5-4.csv";
         //try-catchでユーザー数を変化させて、結果をcsv書き込み、要領はTest1-2と一緒
@@ -109,7 +109,7 @@ public class Test1_3 {
 
     }
 
-    public static void measureCalculateTimeFromId(List<IdAndRating> list, RatingMatrix ratingMatrix, Random rand, int limit){
+    public static void measureCalculateTimeFromId(List<Integer> list, RatingMatrix ratingMatrix, Random rand, int limit){
 
         int id;
         if (movie2UserFlag && isChangeM || !movie2UserFlag && isChangeN) {
@@ -128,7 +128,7 @@ public class Test1_3 {
         sumCalcTime += end - start;
     }
 
-    public static void measureCalculateTimeFrom2Ids(List<IdAndRating> list, RatingMatrix ratingMatrix, Random rand, int limit){
+    public static void measureCalculateTimeFrom2Ids(List<Integer> list, RatingMatrix ratingMatrix, Random rand, int limit){
 
             int id1,id2;
             if (movie2UserFlag && isChangeM || !movie2UserFlag && isChangeN) {

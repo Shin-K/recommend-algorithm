@@ -1,5 +1,6 @@
 import java.io.*;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 
 /**
  * Created by Luis on 2017/11/15.
@@ -19,9 +20,10 @@ public class Test2 {
 
     public static void main(String[] args){
         boolean doTrainNotTest = true;
-        //課題2-1
         SimilarityMatrix similarityMatrix = new SimilarityMatrix(NUM_USER,doTrainNotTest);
-        report2_2_1(similarityMatrix);
+
+        //課題2-1 & レポート2-2-1
+        //printSimilarityMatrix(similarityMatrix);
 
         //matrix2File(NUM_USER,similarityMatrix);
         //SimilarityMatrix similarityMatrix2 = new SimilarityMatrix(NUM_USER,doTrainNotTest); //出力用の行列
@@ -32,16 +34,29 @@ public class Test2 {
         //similarity2Rating(similarityMatrix);
 
         //課題2-3
-        //rateMSE(doTrainNotTest);
+        double[] MSEs = new double[5];
+        int loop = 0;
+        for (int users = 10; users <= 10;users *= 2){
+            MSEs[loop] = rateMSE(doTrainNotTest,users);
+            loop++;
+        }
+        //レポート2-2-2
+        similarity2Rating(similarityMatrix);
+
     }
 
-    public static void report2_2_1(SimilarityMatrix similarityMatrix){
+    public static void printSimilarityMatrix(SimilarityMatrix similarityMatrix){
         int user1,user2;
+        System.out.println("       1     2     3     4     5     6     7     8     9    10");
         for (user1 = 1; user1 <= NUM_USER; user1++){
+            if (user1 != 10) System.out.print(user1 + " ");
+            else System.out.print(user1);
+
             for (user2 = 1; user2 <= NUM_USER; user2++){
                 similarityMatrix.calcAndSetSimilarity(user1,user2);
                 double tmp = round(similarityMatrix.getSimilarity(user1,user2));
-                System.out.print(tmp + " ");
+                if (tmp < 0) System.out.print(" " + String.format("%.2f",tmp));
+                else System.out.print("  " + String.format("%.2f",tmp));
             }
             System.out.println();
         }
@@ -49,31 +64,34 @@ public class Test2 {
 
     public static void similarity2Rating(SimilarityMatrix similarityMatrix){
         for (int user = 1; user <= NUM_USER; user++){
+            //以下はprintするときのみ
+            System.out.println("user" + user + "のRating推定値リスト");
             for (int movie = 1; movie <= TITLES;movie++){
                 similarityMatrix.estimateRating(user,movie);
+
+                //以下はprintするときのみ
+                System.out.println("movie" + movie + "の評価 -> " + similarityMatrix.getEstimatedRating(user,movie));
             }
+            //以下はprintするときのみ
+            System.out.println();
+            System.out.println();
         }
     }
 
-    public static void rateMSE(boolean doTrainNotTest){
-        double[] MSEs = new double[5];
-        int loop = 0;
-        for (int users = 100; users <= MAX_USER;users *= 2){
-            //1.trainを読み込んで類似度行列作成
-            SimilarityMatrix similarityMatrix3 = new SimilarityMatrix(users,doTrainNotTest);
-            file2Matrix(decideFilePathTest(users),similarityMatrix3);
+    public static double rateMSE(boolean doTrainNotTest, int users){
+        //1.trainを読み込んで類似度行列作成
+        SimilarityMatrix similarityMatrix3 = new SimilarityMatrix(users, doTrainNotTest);
+        file2Matrix(decideFilePathTest(users), similarityMatrix3);
 
-            //2.testを読み込んで推定
-            RatingMatrix testRatingMatrix = new RatingMatrix();
-            testRatingMatrix.loadData(decideFilePathTest(users));
-            similarityMatrix3.calcMSE(testRatingMatrix);
+        //2.testを読み込んで推定
+        RatingMatrix testRatingMatrix = new RatingMatrix();
+        testRatingMatrix.loadData(decideFilePathTest(users));
+        similarityMatrix3.calcMSE(testRatingMatrix);
 
-            //3.評価
-            MSEs[loop] = similarityMatrix3.getMSE();
-
-            loop++;
-        }
+        //3.評価
+        return similarityMatrix3.getMSE();
     }
+
 
     public static void matrix2File(int num_user, SimilarityMatrix similarityMatrix) {
         try {
@@ -107,13 +125,13 @@ public class Test2 {
             String readString;
             in = new BufferedReader(new FileReader(fileName)); //読み込むファイルをパスで指定
 
-            int user1 = 1;
             while((readString = in.readLine()) != null) {
                 strings = readString.split(SPLITTER);
-                for (int user2 = 1; user2 <= NUM_USER;user2++){
-                    similarityMatrix2.setSimilarity(user1,user2,Double.parseDouble(strings[user2-1]));
-                }
-                user1++;
+                int user1 = Integer.parseInt(strings[0]);
+                int user2 = Integer.parseInt(strings[1]);
+                double similarity = Double.parseDouble(strings[2]);
+
+                similarityMatrix2.setSimilarity(user1,user2,similarity);
             }
         } catch (IOException e){
             e.printStackTrace();
