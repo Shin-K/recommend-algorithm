@@ -25,6 +25,8 @@ public class Test2 {
         String readString;
         String[] tmpData;
         int atUser, atMovie;
+        String[] MSEs = new String[5];
+        int tryCount = 0;
 
         try{
             for (int user_num = 100;user_num <= MAX_USER;user_num *= 2){
@@ -81,8 +83,14 @@ public class Test2 {
                 System.out.println("\n");
                 //System.out.println("count : " + countMSE);
                 System.out.println("類似度行列の計算時間 : " + sumCalcTimeSim + "(nanosec)");
-                System.out.println("推定評価値の計算時間 : " + sumCalcTimeEstimate + "(nanosec)");
-                System.out.println("MSE               : " + Math.sqrt(MSE/countMSE) + "\n\n");
+                System.out.println("推定評価値の計算時間 : " + sumCalcTimeEstimate + "(nanosec)\n\n");
+                //System.out.println("MSE               : " + Math.sqrt(MSE/countMSE) + "\n\n");
+                MSEs[tryCount] = String.valueOf(Math.sqrt(MSE/countMSE));
+                tryCount++;
+            }
+
+            for (int i = 0; i < 5;i++){
+                System.out.println((int)(100 * Math.pow(2,i)) + "Userの時のMSE" + (i > 3 ? "  " : "   ") +  "-> " + MSEs[i]);
             }
         } catch (IOException e){
             e.printStackTrace();

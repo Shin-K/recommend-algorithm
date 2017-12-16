@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="4faf5942-29a2-43de-be45-08aaf9b1f167" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/RatingMatrix.java" afterPath="$PROJECT_DIR$/src/RatingMatrix.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SimilarityMatrix.java" afterPath="$PROJECT_DIR$/src/SimilarityMatrix.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Test1_3.java" afterPath="$PROJECT_DIR$/src/Test1_3.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Test2.java" afterPath="$PROJECT_DIR$/src/Test2.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -97,8 +94,8 @@
       <file leaf-file-name="Test2.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Test2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="29" column="72" lean-forward="true" selection-start-line="29" selection-start-column="72" selection-end-line="29" selection-end-column="72" />
+            <state relative-caret-position="375">
+              <caret line="89" column="13" lean-forward="true" selection-start-line="89" selection-start-column="13" selection-end-line="89" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -737,7 +734,7 @@
       <workItem from="1510978741956" duration="8048000" />
       <workItem from="1511753822651" duration="13823000" />
       <workItem from="1512532977860" duration="50109000" />
-      <workItem from="1513142494889" duration="14773000" />
+      <workItem from="1513142494889" duration="16747000" />
     </task>
     <task id="LOCAL-00001" summary="1-1 finished (but should be changed later)">
       <created>1507963559865</created>
@@ -879,11 +876,18 @@
       <option name="project" value="LOCAL" />
       <updated>1512659143442</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="2 finished">
+      <created>1513409352079</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1513409352079</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="222281000" />
+    <option name="totallyTimeSpent" value="224255000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -907,7 +911,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3359894" sideWeight="0.30703124" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.67729086" sideWeight="0.6929687" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33466136" sideWeight="0.6929687" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2431611" sideWeight="0.49375" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -950,7 +954,8 @@
     <MESSAGE value="should have not made &quot;intersection&quot; static, which caused NullPointerException" />
     <MESSAGE value="estimateRating() is not functioning" />
     <MESSAGE value="2-2-2 in progress" />
-    <option name="LAST_COMMIT_MESSAGE" value="2-2-2 in progress" />
+    <MESSAGE value="2 finished" />
+    <option name="LAST_COMMIT_MESSAGE" value="2 finished" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -993,7 +998,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Test2.java</url>
-          <line>66</line>
+          <line>68</line>
           <properties />
           <option name="timeStamp" value="78" />
         </line-breakpoint>
@@ -1299,8 +1304,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Test2.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="29" column="72" lean-forward="true" selection-start-line="29" selection-start-column="72" selection-end-line="29" selection-end-column="72" />
+        <state relative-caret-position="375">
+          <caret line="89" column="13" lean-forward="true" selection-start-line="89" selection-start-column="13" selection-end-line="89" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
