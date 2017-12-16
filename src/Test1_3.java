@@ -26,9 +26,9 @@ public class Test1_3 {
     private static String movie2List1 = "人の時、任意の二つのMovieIDを入力に取り、";
     private static String movie2List2 = "両方の映画を見たユーザのUserIdとそのユーザが与えたRatingのリストを出力する平均時間 : ";
 
-    private static final boolean movie2UserFlag = true;
-    private static final boolean isChangeN = false;
-    private static final boolean isChangeM = true;
+    private static final boolean movie2UserFlag = false;
+    private static final boolean isChangeN = true;
+    private static final boolean isChangeM = false;
 
 
 
@@ -47,7 +47,7 @@ public class Test1_3 {
 
             if (isChangeN){
                 //N変化させる時
-                for (int number = 100; number <= 1600; number = number*2){
+                for (int number = 100; number <= 100; number = number*2){
                     ratingMatrix.loadData(decideFilePath(number));
                     sumCalcTime = 0;
                     for (int i = 0;i < COUNT;i++) {
@@ -146,6 +146,9 @@ public class Test1_3 {
 
             long start = System.nanoTime();
             list = ratingMatrix.makeListFrom2Ids(id1,id2,list,movie2UserFlag);
+            for (int i : list){
+                System.out.println(i);
+            }
             long end = System.nanoTime();
             sumCalcTime += end - start;
     }

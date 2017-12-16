@@ -13,10 +13,10 @@ public class RatingMatrix {
     private String readString;
     private int atUser,atMovie,atRating;
 
-    private static Map<Integer,Map<Integer,Integer>> ratingMatrix = new HashMap<>();
+    private Map<Integer,Map<Integer,Integer>> ratingMatrix = new HashMap<>();
 
-    private static Map<Integer,Set<Integer>> movieId2User = new HashMap<>();
-    private static Map<Integer,Set<Integer>> userId2Movie = new HashMap<>();
+    private Map<Integer,Set<Integer>> movieId2User = new HashMap<>();
+    private Map<Integer,Set<Integer>> userId2Movie = new HashMap<>();
 
     public Map<Integer,Set<Integer>> getUserId2Movie(){
         return userId2Movie;
@@ -37,9 +37,10 @@ public class RatingMatrix {
                 atMovie = Integer.parseInt(tempData[1]);
                 atRating = Integer.parseInt(tempData[2]);
                 putData(atUser,atMovie,atRating);
-                putMovieId2User(atMovie,atUser);
                 putUserId2Movie(atUser,atMovie);
+                putMovieId2User(atMovie,atUser);
             }
+            //System.out.println(userId2Movie);
         } catch (IOException e){
             e.printStackTrace();
         } finally {
@@ -166,8 +167,11 @@ public class RatingMatrix {
         }
     }*/
 
-    public List<Integer> makeListFromId(int id, List<Integer> list, boolean movie2UserFlag) {
+    public Set<Map.Entry<Integer,Map<Integer,Integer>>> getEntrySet(){
+        return ratingMatrix.entrySet();
+    }
 
+    public List<Integer> makeListFromId(int id, List<Integer> list, boolean movie2UserFlag) {
         Map<Integer, Set<Integer>> id2Set;
         if (movie2UserFlag) id2Set = movieId2User;
         else id2Set = userId2Movie;
@@ -191,6 +195,7 @@ public class RatingMatrix {
     }
 
     public List<Integer> makeListFrom2Ids(int id1, int id2, List<Integer> list, boolean movie2UserFlag){
+        //System.out.println(userId2Movie);
 
         Map<Integer,Set<Integer>> id2Set;
         if (movie2UserFlag) id2Set = movieId2User;
@@ -202,6 +207,10 @@ public class RatingMatrix {
         } else {
             Set<Integer> intersection = new TreeSet<>(id2Set.get(id1));
             intersection.retainAll(id2Set.get(id2));
+//
+//            for (int element : intersection){
+//                if (id2Set.get(id2) == null) intersection.remove(element);
+//            }
 
             for (int anId : intersection){
                 //if (id1 == 1 && id2 == 2) System.out.println(anId);
@@ -218,6 +227,52 @@ public class RatingMatrix {
             System.out.println(user1 + "と" + user2 + "が両者とも観た映画はありません。");
             return;
         }*/
+    }
+
+    public List<Integer> makeListFrom2Ids(int id1, int id2, List<Integer> list, boolean movie2UserFlag, Map<Integer,Set<Integer>> userId2Movie){
+        //System.out.println(userId2Movie);
+
+        Map<Integer,Set<Integer>> id2Set;
+        if (movie2UserFlag) id2Set = movieId2User;
+        else id2Set = userId2Movie;
+
+        if (!id2Set.containsKey(id1) || !id2Set.containsKey(id2)) {
+            //System.out.println("ユーザーNo." + user1 + "とユーザーNo." + user2 + "の両者とも観た映画はありません。");
+            return list;
+        } else {
+            Set<Integer> intersection = new TreeSet<>(id2Set.get(id1));
+            intersection.retainAll(id2Set.get(id2));
+//
+//            for (int element : intersection){
+//                if (id2Set.get(id2) == null) intersection.remove(element);
+//            }
+
+            for (int anId : intersection){
+                //if (id1 == 1 && id2 == 2) System.out.println(anId);
+                //IdAndRating one = new IdAndRating(anId,getRating(id1,anId,movie2UserFlag),getRating(id2,anId,movie2UserFlag));
+                //System.out.println(one.getId());
+                list.add(anId);
+            }
+            Collections.sort(list);
+
+            return list;
+
+        }
+/*        if (!userId2Movie.containsKey(user1) || !userId2Movie.containsKey(user2)) {
+            System.out.println(user1 + "と" + user2 + "が両者とも観た映画はありません。");
+            return;
+        }*/
+    }
+
+    public void printRatingMatrix(){
+        for (Map.Entry<Integer,Map<Integer,Integer>> entry : ratingMatrix.entrySet()){
+            System.out.print("(" + entry.getKey() + ",");
+            for (Map.Entry<Integer,Integer> entry2 : entry.getValue().entrySet()){
+                System.out.print("(" + entry2.getKey() + "," + entry2.getValue() + ") , ");
+            }
+
+            System.out.println();
+        }
     }
 
 /*    public static void printMovieRatingListFrom2Users(List<IdAndRating> list, boolean printTitleTable){

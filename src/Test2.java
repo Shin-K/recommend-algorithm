@@ -15,31 +15,74 @@ public class Test2 {
     private static BufferedReader in = null;
     private static final int NUM_USER = 10;
     private static final int MAX_USER = 1600;
+    private static final boolean movie2UserFlag = false;
+
+    private static long sumCalcTimeSim = 0;
 
 
 
     public static void main(String[] args){
-        boolean doTrainNotTest = true;
         String readString;
         String[] tmpData;
         int atUser, atMovie;
-        SimilarityMatrix similarityMatrix = new SimilarityMatrix(NUM_USER,doTrainNotTest);
-
-        //課題2-1 & レポート2-2-1
-        printSimilarityMatrix(similarityMatrix);
 
         try{
-            in = new BufferedReader(new FileReader(decideFilePathTest(NUM_USER))); //読み込むファイルをパスで指定
+            for (int user_num = 100;user_num <= MAX_USER;user_num *= 2){
+                double MSE = 0.0;
+                int countMSE = 0;
+                sumCalcTimeSim =0;
+                long sumCalcTimeEstimate = 0;
+                int countLoop = 0;
 
-            while((readString = in.readLine()) != null) {
-                tmpData = readString.split(SPLITTER);
-                atUser = Integer.parseInt(tmpData[0]);
-                atMovie = Integer.parseInt(tmpData[1]);
+                System.out.println("〜user数が" + user_num + "の時〜\n\n・類似度行列");
+                SimilarityMatrix similarityMatrix = new SimilarityMatrix(user_num);
+                RatingMatrix testRatingMatrix = new RatingMatrix();
+                testRatingMatrix.loadData(decideFilePathTest(user_num));
+                //if (user_num == 100) testRatingMatrix.printRatingMatrix();
 
-                similarityMatrix.estimateRating(atUser,atMovie);
-                double tmp = similarityMatrix.getEstimatedRating(atUser,atMovie);
-                System.out.println("user" + atUser + "の" + "movie" + atMovie + "への推定評価値 -> " + tmp);
+                //課題2-1 & レポート2-2-1
+                printSimilarityMatrix(similarityMatrix,user_num);
 
+
+                //testRatingMatrix.printRatingMatrix();
+                in = new BufferedReader(new FileReader(decideFilePathTest(user_num))); //読み込むファイルをパスで指定
+                //↓printする時
+                System.out.println("\n・(userId, movieId) -> 推定評価値");
+
+                while((readString = in.readLine()) != null) {
+                    tmpData = readString.split(SPLITTER);
+                    atUser = Integer.parseInt(tmpData[0]);
+                    atMovie = Integer.parseInt(tmpData[1]);
+
+                    //if (atUser > 10) break; ←これのせいでMSEが無茶苦茶になり、私は無限に時間を溶かしました。。。
+
+                    long start = System.nanoTime();
+                    similarityMatrix.estimateRating(atUser,atMovie);
+                    long end = System.nanoTime();
+                    sumCalcTimeEstimate += end - start;
+
+                    double estimatedRating = similarityMatrix.getEstimatedRating(atUser,atMovie);
+                    double realRating = testRatingMatrix.getRating(atUser,atMovie,movie2UserFlag);
+
+                    MSE += (realRating - estimatedRating) * (realRating - estimatedRating);
+                    countMSE++;
+
+                    //↓printする時
+                    if (atUser <= 10){
+//                        if (countLoop != 0 && countLoop %2 == 0) {
+//                            System.out.println();
+//                        }
+                        String tmp = String.format("%.2f",estimatedRating);
+                        //System.out.println("(" + atUser + "," + atMovie + ") -> (" + tmp + "," + realRating + ")  ");
+                        System.out.println("(" + atUser + "," + atMovie + ") -> " + tmp);
+                    }
+                    countLoop++;
+                }
+                System.out.println("\n");
+                //System.out.println("count : " + countMSE);
+                System.out.println("類似度行列の計算時間 : " + sumCalcTimeSim + "(nanosec)");
+                System.out.println("推定評価値の計算時間 : " + sumCalcTimeEstimate + "(nanosec)");
+                System.out.println("MSE               : " + Math.sqrt(MSE/countMSE) + "\n\n");
             }
         } catch (IOException e){
             e.printStackTrace();
@@ -52,79 +95,41 @@ public class Test2 {
                 }
             }
         }
-
-        //matrix2File(NUM_USER,similarityMatrix);
-        //SimilarityMatrix similarityMatrix2 = new SimilarityMatrix(NUM_USER,doTrainNotTest); //出力用の行列
-        //file2Matrix(fileName,similarityMatrix2);
-
-
-        //レポート2-2-2
-        //similarity2Rating(similarityMatrix);
-
-        //課題2-2
-        //similarity2Rating(similarityMatrix);
-
-        //課題2-3
-        double[] MSEs = new double[5];
-        int loop = 0;
-        int users = 10;
-        //for (int users = 10; users <= 10;users *= 2){
-            MSEs[loop] = rateMSE(doTrainNotTest,users);
-            loop++;
-            //System.out.println(MSEs[loop]);
-        //}
-
-
     }
 
-    public static void printSimilarityMatrix(SimilarityMatrix similarityMatrix){
+    public static void printSimilarityMatrix(SimilarityMatrix similarityMatrix,int num_user){
         int user1,user2;
         System.out.println("       1     2     3     4     5     6     7     8     9    10");
-        for (user1 = 1; user1 <= NUM_USER; user1++){
-            if (user1 != 10) System.out.print(user1 + " ");
-            else System.out.print(user1);
+        for (user1 = 1; user1 <= num_user; user1++){
+            if (user1 <= 10){
+                if (user1 != 10){
+                    System.out.print(user1 + " ");
+                }
+                else {
+                    System.out.print(user1);
+                }
+            }
 
-            for (user2 = 1; user2 <= NUM_USER; user2++){
+            for (user2 = 1; user2 <= num_user; user2++){
+                //類似度行列計算時間の計測
+                long start = System.nanoTime();
                 similarityMatrix.calcAndSetSimilarity(user1,user2);
+                long end = System.nanoTime();
+                sumCalcTimeSim += end - start;
+
                 double tmp = round(similarityMatrix.getSimilarity(user1,user2));
-                if (tmp < 0) System.out.print(" " + String.format("%.2f",tmp));
-                else System.out.print("  " + String.format("%.2f",tmp));
+                if (user1 <= 10 && user2 <= 10){
+                    if (tmp < 0) {
+                        System.out.print(" " + String.format("%.2f",tmp));
+                    }
+                    else {
+                        System.out.print("  " + String.format("%.2f",tmp));
+                    }
+                }
             }
-            System.out.println();
+            if (user1 <= 10) System.out.println();
         }
     }
-
-    public static void similarity2Rating(SimilarityMatrix similarityMatrix){
-        for (int user = 1; user <= NUM_USER; user++){
-            //以下はprintするときのみ
-            System.out.println("user" + user + "の推定評価値リスト");
-            for (int movie = 1; movie <= 10;movie++){
-                similarityMatrix.estimateRating(user,movie);
-
-                //以下はprintするときのみ
-                double tmp = similarityMatrix.getEstimatedRating(user,movie);
-                if (movie % 5 == 0) System.out.println("movie" + movie + " -> " + String.format("%.2f",tmp));
-                else System.out.print("movie" + movie + " -> " + String.format("%.2f",tmp) + "  ");
-            }
-            //以下はprintするときのみ
-            System.out.println();
-        }
-    }
-
-    public static double rateMSE(boolean doTrainNotTest, int users){
-        //1.trainを読み込んで類似度行列作成
-        SimilarityMatrix similarityMatrix3 = new SimilarityMatrix(users, doTrainNotTest);
-        file2Matrix(decideFilePathTest(users), similarityMatrix3);
-
-        //2.testを読み込んで推定
-        RatingMatrix testRatingMatrix = new RatingMatrix();
-        testRatingMatrix.loadData(decideFilePathTest(users));
-        similarityMatrix3.calcMSE(testRatingMatrix);
-
-        //3.評価
-        return similarityMatrix3.getMSE();
-    }
-
 
     public static void matrix2File(int num_user, SimilarityMatrix similarityMatrix) {
         try {
@@ -139,7 +144,6 @@ public class Test2 {
                 pw.println();
             }
             pw.close();
-
         }catch (IOException e){
             e.printStackTrace();
         }
@@ -150,7 +154,6 @@ public class Test2 {
         BigDecimal numDecAfter = numDecBefore.setScale(2, BigDecimal.ROUND_HALF_UP);
         return numDecAfter.doubleValue();
     }
-
 
     public static void file2Matrix(String fileName, SimilarityMatrix similarityMatrix2){
         try {
@@ -174,6 +177,5 @@ public class Test2 {
     public static String decideFilePathTest(int userNum){
         return FILE_PATH1 + String.valueOf(userNum) + FILE_PATH2TEST;
     }
-
 
 }
