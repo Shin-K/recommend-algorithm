@@ -180,14 +180,14 @@ public class RatingMatrix {
             //System.out.println("ユーザーNo." + user1 + "とユーザーNo." + user2 + "の両者とも観た映画はありません。");
             return list;
         } else {
-            Set<Integer> valueMap = new TreeSet<>(id2Set.get(id));
+            Set<Integer> valueMap = id2Set.get(id);
 
             for (int valueId : valueMap) {
                 //IdAndRating one = new IdAndRating(valueId, getRating(id, valueId, movie2UserFlag));
                 //System.out.println(id + "," + valueId + " : " + getRating(id,valueId,movie2UserFlag));
                 list.add(valueId);
             }
-            Collections.sort(list);
+            //Collections.sort(list);
 
             return list;
 
@@ -205,7 +205,7 @@ public class RatingMatrix {
             //System.out.println("ユーザーNo." + user1 + "とユーザーNo." + user2 + "の両者とも観た映画はありません。");
             return list;
         } else {
-            Set<Integer> intersection = new TreeSet<>(id2Set.get(id1));
+            Set<Integer> intersection = id2Set.get(id1);
             intersection.retainAll(id2Set.get(id2));
 //
 //            for (int element : intersection){
@@ -218,7 +218,7 @@ public class RatingMatrix {
                 //System.out.println(one.getId());
                 list.add(anId);
             }
-            Collections.sort(list);
+            //Collections.sort(list);
 
             return list;
 

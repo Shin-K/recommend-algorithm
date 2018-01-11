@@ -36,18 +36,18 @@ public class Test1_3 {
     public static void main(String[] args){
         List<Integer> list = new ArrayList<>();
         RatingMatrix ratingMatrix = new RatingMatrix();
-        String fileName = "CalculateTime1-3-5-4.csv";
+        String fileName = "FixedCalculateTime1-3-4-2tmp2.csv";
         //try-catchでユーザー数を変化させて、結果をcsv書き込み、要領はTest1-2と一緒
 
         try {
             Random rand = new Random();
-            rand.setSeed(100);
+            rand.setSeed(111);
             PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(fileName)));
 
 
             if (isChangeN){
                 //N変化させる時
-                for (int number = 100; number <= 100; number = number*2){
+                for (int number = 100; number <= 1600; number = number*2){
                     ratingMatrix.loadData(decideFilePath(number));
                     sumCalcTime = 0;
                     for (int i = 0;i < COUNT;i++) {
@@ -59,6 +59,7 @@ public class Test1_3 {
                     pw.print(String.valueOf(number));
                     pw.print(",");
                     pw.println(String.valueOf(time));
+                    System.out.println(time);
                 }
             }
 
@@ -68,20 +69,21 @@ public class Test1_3 {
                     if (num_movie % 100 != 0) continue;
 
                     ratingMatrix.loadData(decideFilePath(NUM_USER),num_movie);
-                    System.out.println(num_movie);
+                    //System.out.println(num_movie);
                     sumCalcTime = 0;
 
                     for (int i = 0; i < COUNT;i++){
                         measureCalculateTimeFromId(list,ratingMatrix,rand,num_movie); //課題1-3の1と2
                         //measureCalculateTimeFrom2Ids(list,ratingMatrix,rand,num_movie); //課題1-3の3と4
-                        if (i % 200 == 0) System.out.print("- ");
+                        //if (i % 200 == 0) System.out.print("- ");
                     }
-                    System.out.println("calc fin");
+                    //System.out.println("calc fin");
                     double time = sumCalcTime / COUNT;
                     //ユーザー数、そのユーザー数での平均計測時間のcsv書き出し
                     pw.print(String.valueOf(num_movie));
                     pw.print(",");
                     pw.println(String.valueOf(time));
+                    System.out.println(time);
                 }
             }
 
@@ -146,9 +148,9 @@ public class Test1_3 {
 
             long start = System.nanoTime();
             list = ratingMatrix.makeListFrom2Ids(id1,id2,list,movie2UserFlag);
-            for (int i : list){
-                System.out.println(i);
-            }
+            //for (int i : list){
+                //System.out.println(i);
+            //}
             long end = System.nanoTime();
             sumCalcTime += end - start;
     }
