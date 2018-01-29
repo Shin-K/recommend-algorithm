@@ -1,5 +1,3 @@
-package recommend;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -28,6 +26,49 @@ public class RatingMatrix {
         return ratingMatrix.entrySet();
     }
 
+    public boolean isNum(String number) {
+        try {
+            Integer.parseInt(number);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    public void loadCSV(String filePath){
+        String splitterCSV = ",";
+        try{
+            in = new BufferedReader(new FileReader(filePath)); //読み込むファイルをパスで指定
+
+            int user = 1;
+            while((readString = in.readLine()) != null) {
+                tempData = readString.split(splitterCSV);
+
+                for (int item = 1; item <= tempData.length;item++){
+                    String rating = tempData[item - 1];
+                    if (isNum(rating)){
+                        putData(user,item,Integer.parseInt(rating));
+                        putUserId2Movie(user,item);
+                        putMovieId2User(item,user);
+                    }
+                }
+
+                user++;
+            }
+            //System.out.println(userId2Movie);
+        } catch (IOException e){
+            e.printStackTrace();
+        } finally {
+            if(in != null){
+                try{
+                    in.close();
+                } catch (IOException e){
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
 
     public void loadData(String filePath){
         try{
@@ -53,6 +94,36 @@ public class RatingMatrix {
                     e.printStackTrace();
                 }
             }
+        }
+    }
+
+    public void loadData(String filePath, boolean isItemSim){
+        if (isItemSim){
+            try{
+                in = new BufferedReader(new FileReader(filePath)); //読み込むファイルをパスで指定
+
+                while((readString = in.readLine()) != null) {
+                    tempData = readString.split(SPLITTER);
+                    atUser = Integer.parseInt(tempData[0]);
+                    atMovie = Integer.parseInt(tempData[1]);
+                    atRating = Integer.parseInt(tempData[2]);
+                    putData(atMovie,atUser,atRating);
+                    putUserId2Movie(atMovie,atUser);
+                    putMovieId2User(atUser,atMovie);
+                }
+            } catch (IOException e){
+                e.printStackTrace();
+            } finally {
+                if(in != null){
+                    try{
+                        in.close();
+                    } catch (IOException e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+        } else {
+            loadData(filePath);
         }
     }
 
@@ -278,7 +349,7 @@ public class RatingMatrix {
     }
 
 /*    public static void printMovieRatingListFrom2Users(List<IdAndRating> list, boolean printTitleTable){
-        recommend.MovieTitle movieTitle = new recommend.MovieTitle();
+        MovieTitle movieTitle = new MovieTitle();
         Iterator<IdAndRating> iterator = list.iterator();
 
 
@@ -322,7 +393,7 @@ public class RatingMatrix {
         //if (!movieId2User.containsKey(movie1)) return;
         //if (!movieId2User.containsKey(movie2)) return;
 
-        recommend.MovieTitle movieTitle = new recommend.MovieTitle();
+        MovieTitle movieTitle = new MovieTitle();
         if (printTitleTable){
             movieTitle.loadTitles();
             System.out.println("〜No." + movie1 + " & No." + movie2 + "映画のタイトルとそれを視聴したユーザーの一覧〜");

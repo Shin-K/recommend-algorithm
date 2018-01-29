@@ -1,7 +1,3 @@
-package recommend;
-
-import recommend.RatingMatrix0;
-
 /**
  * Created by Luis on 2017/10/25.
  */

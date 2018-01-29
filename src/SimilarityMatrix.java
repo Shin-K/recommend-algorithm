@@ -1,6 +1,4 @@
-package recommend;
-
-import recommend.RatingMatrix;
+import com.sun.xml.internal.ws.api.ha.StickyFeature;
 
 import java.util.*;
 import java.util.Set;
@@ -25,25 +23,88 @@ public class SimilarityMatrix {
     private static final String FILE_PATH2TEST = "User_train_ratings.dat";
     private static final boolean movie2UserFlag = false;
 
+    private static final String FILE_PATH_QUESTIONNAIRE_TRAIN = "res/questionnaire/";
+    private static final String FILE_PATH_QUESTIONNAIRE_TEST = "res/questionnaire/";
 
 
-    public SimilarityMatrix(int num_user) {
-        this.num_user = num_user;
-        //ratings = new int[num_user][TITLES];
-        aUserAverageRating = new double[num_user];
-        similarity = new double[num_user][num_user];
-        estimatedRatings = new double[num_user][TITLES];
+    private boolean isItemSim;
 
+
+    public SimilarityMatrix(int param1, int param2, boolean isItemSim) {
+        //param1がMovielensのやつでいうuser,param2がmovieに該当する
+        this.num_user = param1;
+        this.isItemSim = isItemSim;
 
         ratingMatrixForSim = new RatingMatrix();
-        ratingMatrixForSim.loadData(decideFilePathTrain(num_user));
 
-        Map<Integer,Set<Integer>> map = ratingMatrixForSim.getUserId2Movie();
-        calcAUserAverageRating(num_user);
+        if (isItemSim) {
+            aUserAverageRating = new double[param2];
+            similarity = new double[param2][param2];
+            estimatedRatings = new double[param2][param1];
+            //MovieLensの時
+            ratingMatrixForSim.loadData(decideFilePathTrain(param1),isItemSim);
+            //アンケートの時
+            //ratingMatrixForSim.loadData(FILE_PATH_QUESTIONNAIRE_TRAIN);
+            calcAUserAverageRating(param2,param1);
+
+            long sumCalcTimeSim = 0;
+
+            for (int user1 = 1;user1 <= param2;user1++){
+                for (int user2 = 1;user2 <= param2;user2++){
+                    long start = System.nanoTime();
+                    calcAndSetSimilarity(user1,user2);
+                    long end = System.nanoTime();
+                    sumCalcTimeSim += end - start;
+                }
+            }
+            System.out.println("類似度行列の計算時間 : " + sumCalcTimeSim + "(nanosec)\n");
+
+        } else {
+            aUserAverageRating = new double[param1];
+            similarity = new double[param1][param1];
+            estimatedRatings = new double[param1][param2];
+            ratingMatrixForSim.loadData(decideFilePathTrain(param1));
+            calcAUserAverageRating(param1,param2);
+        }
+
+        //Map<Integer,Set<Integer>> map = ratingMatrixForSim.getUserId2Movie();
+
 
         //calcMatrix();
         //assert map.get(1).size() == 51;
-        MSE = 0.0;
+        this.MSE = 0.0;
+    }
+
+    public SimilarityMatrix(int num_user,String filePathCSV, int num_restaurant){
+        this.num_user = num_user;
+        aUserAverageRating = new double[num_user];
+        similarity = new double[num_user][num_user];
+        estimatedRatings = new double[num_user][num_restaurant];
+
+        ratingMatrixForSim = new RatingMatrix();
+        ratingMatrixForSim.loadCSV(filePathCSV);
+
+        calcAUserAverageRating(num_user,num_restaurant);
+
+        for (int user1 = 1;user1 <= num_user;user1++){
+            for (int user2 = 1;user2 <= num_user;user2++){
+                calcAndSetSimilarity(user1,user2);
+            }
+        }
+        this.MSE = 0.0;
+    }
+
+
+    public int getRealRating(int user, int item){
+        if (ratingMatrixForSim.checkIdExists(user,item,false)){
+            return ratingMatrixForSim.getRating(user,item,false);
+        } else {
+            return 0;
+        }
+    }
+
+    public double getAUserAverageRating(int num_user){
+        return aUserAverageRating[num_user];
     }
 
 
@@ -67,18 +128,18 @@ public class SimilarityMatrix {
         similarity[user2-1][user1-1] = similarityValue;
     }
 
-
-    public void calcAUserAverageRating(int num_user){
+    public void calcAUserAverageRating(int param1,int param2){
 //        assert ratingMatrixForSim.getUserId2Movie().get(0).size() == 51;
         int sum_rating,num_ratedItem;
 
-        for (int userIndex = 1; userIndex <= num_user; userIndex++) {
+        for (int userIndex = 1; userIndex <= param1; userIndex++) {
             sum_rating = 0;
             num_ratedItem = 0;
-            for (int titleIndex = 1; titleIndex <= TITLES; titleIndex++) {
+            for (int restaurantIndex = 1; restaurantIndex <= param2; restaurantIndex++) {
+                //if (userIndex == 2239) System.out.println(restaurantIndex);
                 int tmpRating;
-                if (ratingMatrixForSim.checkIdExists(userIndex,titleIndex,movie2UserFlag)) {
-                    tmpRating = ratingMatrixForSim.getRating(userIndex,titleIndex,movie2UserFlag);
+                if (ratingMatrixForSim.checkIdExists(userIndex,restaurantIndex,movie2UserFlag)) {
+                    tmpRating = ratingMatrixForSim.getRating(userIndex,restaurantIndex,movie2UserFlag);
                 }
                 else tmpRating = 0;
 
@@ -89,7 +150,6 @@ public class SimilarityMatrix {
             }
             aUserAverageRating[userIndex-1] = (double)sum_rating / num_ratedItem;
         }
-
     }
 
     public List<Integer> makeIntersection(int user1, int user2, List<Integer> intersection, boolean movie2UserFlag, Map<Integer,Set<Integer>> userId2Movie){
@@ -122,11 +182,37 @@ public class SimilarityMatrix {
 
     }
 
+    public void calcAndSetItemSimilarity(int item1, int item2) {
+        //assert ratingMatrixForSim.getUserId2Movie().get(1).size() == 51;
+        double numerator = 0.0;
+        double denominator;
+        double denominator1 = 0.0;
+        double denominator2 = 0.0;
+        List<Integer> intersection = new ArrayList<>();
+
+        intersection = makeIntersection(item1,item2,intersection,movie2UserFlag, ratingMatrixForSim.getUserId2Movie());
+        for(int element : intersection){
+            double calc1 = (ratingMatrixForSim.getRating(item1,element,movie2UserFlag) - aUserAverageRating[item1-1]);
+            double calc2 = (ratingMatrixForSim.getRating(item2,element,movie2UserFlag) - aUserAverageRating[item2-1]);
+            //分子の計算
+            numerator += calc1 * calc2;
+            //分母の計算
+            denominator1 += calc1 * calc1;
+            denominator2 += calc2 * calc2;
+        }
+        denominator = Math.sqrt(denominator1) * Math.sqrt(denominator2);
+
+        if (intersection.size() <= 1 || denominator1 == 0 || denominator2 == 0) setSimilarity(item1,item2,0);
+        else setSimilarity(item1,item2,numerator/denominator);
+
+    }
+
     public void estimateRating(int userId,int movieId){
         //assert ratingMatrixForSim.getUserId2Movie().get(1).size() == 51;
         double atUserAverageRating = aUserAverageRating[userId - 1];
         List<Integer> watchedUserList = new ArrayList<>();
         boolean makeUserList = true;
+        //if (isItemSim) makeUserList = false;
 
         watchedUserList = ratingMatrixForSim.makeListFromId(movieId,watchedUserList,makeUserList);
 
@@ -155,6 +241,7 @@ public class SimilarityMatrix {
         }
 
         setEstimatedRating(userId,movieId,atUserAverageRating + (numerator / absSumOtherUserSimilarity));
+        System.out.print("");
     }
 
 
@@ -176,6 +263,7 @@ public class SimilarityMatrix {
     }
 
     public void setEstimatedRating(int userId, int movieId, double estimatedRating){
+        //System.out.println(userId + "," + movieId);
         estimatedRatings[userId - 1][movieId - 1] = estimatedRating;
     }
 
@@ -183,20 +271,20 @@ public class SimilarityMatrix {
         return estimatedRatings[userId - 1][movieId - 1];
     }
 
-    public void calcMSE(RatingMatrix testRatingMatrix){
+    public void calcMSE(){
         MSE = 0;
-        if (testRatingMatrix == null) System.exit(-1);
+        if (ratingMatrixForSim == null) System.exit(-1);
 
         int num_rating = 0;
         List<Integer> watchedMovieList = new ArrayList<>();
 
-        Map<Integer,Set<Integer>> userId2Movie = testRatingMatrix.getUserId2Movie();
+        Map<Integer,Set<Integer>> userId2Movie = ratingMatrixForSim.getUserId2Movie();
 
         for (Map.Entry<Integer,Set<Integer>> entry : userId2Movie.entrySet()){
             int userId = entry.getKey();
             //if (userId > 10) break;
             for (int movieId : entry.getValue()){
-                double trueValue = testRatingMatrix.getRating(userId,movieId,movie2UserFlag);
+                double trueValue = ratingMatrixForSim.getRating(userId,movieId,movie2UserFlag);
                 double estimatedValue = getEstimatedRating(userId,movieId);
 
 

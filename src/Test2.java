@@ -1,7 +1,3 @@
-package recommend;
-
-import recommend.RatingMatrix;
-import recommend.SimilarityMatrix;
 
 import java.io.*;
 import java.math.BigDecimal;
@@ -19,10 +15,12 @@ public class Test2 {
     private static BufferedReader in = null;
     private static final int NUM_USER = 10;
     private static final int MAX_USER = 1600;
-    private static final boolean movie2UserFlag = false;
+    private static final boolean movie2UserFlag = true;
 
     private static long sumCalcTimeSim = 0;
 
+    private static final String FILE_PATH_QUESTIONNAIRE_TEST = "res/exp_data/";
+    private static boolean isItemSim;
 
 
     public static void main(String[] args){
@@ -31,6 +29,7 @@ public class Test2 {
         int atUser, atMovie;
         String[] MSEs = new String[5];
         int tryCount = 0;
+        isItemSim = true;
 
         try{
             for (int user_num = 100;user_num <= MAX_USER;user_num *= 2){
@@ -41,9 +40,15 @@ public class Test2 {
                 int countLoop = 0;
 
                 System.out.println("〜user数が" + user_num + "の時〜\n\n・類似度行列");
-                SimilarityMatrix similarityMatrix = new SimilarityMatrix(user_num);
+
+                SimilarityMatrix similarityMatrix = new SimilarityMatrix(user_num,TITLES,isItemSim);
                 RatingMatrix testRatingMatrix = new RatingMatrix();
+
+                //1.Movielensのとき
                 testRatingMatrix.loadData(decideFilePathTest(user_num));
+                //2.アンケートのとき
+                //testRatingMatrix.loadData(FILE_PATH_QUESTIONNAIRE_TEST);
+
                 //if (user_num == 100) testRatingMatrix.printRatingMatrix();
 
                 //課題2-1 & レポート2-2-1
@@ -53,12 +58,27 @@ public class Test2 {
                 //testRatingMatrix.printRatingMatrix();
                 in = new BufferedReader(new FileReader(decideFilePathTest(user_num))); //読み込むファイルをパスで指定
                 //↓printする時
-                System.out.println("\n・(userId, movieId) -> 推定評価値");
+                if (isItemSim){
+                    System.out.println("\n・(movieId, userId) -> (実際の評価値, 推定評価値)");
+                } else {
+                    System.out.println("\n・(userId, movieId) -> (実際の評価値, 推定評価値)");
+                }
+
+                boolean first = true;
 
                 while((readString = in.readLine()) != null) {
                     tmpData = readString.split(SPLITTER);
-                    atUser = Integer.parseInt(tmpData[0]);
-                    atMovie = Integer.parseInt(tmpData[1]);
+
+                    int i, j;
+                    if (isItemSim){
+                        i = 1;
+                        j = 0;
+                    } else {
+                        i = 0;
+                        j = 1;
+                    }
+                    atUser = Integer.parseInt(tmpData[i]);
+                    atMovie = Integer.parseInt(tmpData[j]);
 
                     //if (atUser > 10) break; ←これのせいでMSEが無茶苦茶になり、私は無限に時間を溶かしました。。。
 
@@ -68,25 +88,43 @@ public class Test2 {
                     sumCalcTimeEstimate += end - start;
 
                     double estimatedRating = similarityMatrix.getEstimatedRating(atUser,atMovie);
-                    double realRating = testRatingMatrix.getRating(atUser,atMovie,movie2UserFlag);
+                    int realRating = testRatingMatrix.getRating(atUser,atMovie,movie2UserFlag);
 
-                    MSE += (realRating - estimatedRating) * (realRating - estimatedRating);
-                    countMSE++;
+                    double calcResult = (realRating - estimatedRating) * (realRating - estimatedRating);
+                    //下のこれでようやくNaN消せた…長い戦いだった…
+                    if (!Double.isNaN(calcResult)){
+                        MSE +=calcResult;
+                        countMSE++;
+                    }
+
+/*                    if (Double.isNaN(MSE) && first) {
+                        System.out.println("おかしいよ〜〜〜 " + atUser + "," + atMovie + "の時 -> real:"
+                                + realRating + ", estimate:" + estimatedRating);
+                        first = false;
+                    }*/
 
                     //↓printする時
-                    if (atUser <= 10){
+                    int limit;
+                    if (isItemSim){
+                        limit = atMovie;
+                    } else {
+                        limit = atUser;
+                    }
+                    if (limit <= 10){
 //                        if (countLoop != 0 && countLoop %2 == 0) {
 //                            System.out.println();
 //                        }
                         String tmp = String.format("%.2f",estimatedRating);
                         //System.out.println("(" + atUser + "," + atMovie + ") -> (" + tmp + "," + realRating + ")  ");
-                        System.out.println("(" + atUser + "," + atMovie + ") -> " + tmp);
+                        System.out.println("(" + atUser + "," + atMovie + ") -> (" + realRating + "," + tmp + ")");
                     }
                     countLoop++;
                 }
                 System.out.println("\n");
                 //System.out.println("count : " + countMSE);
-                System.out.println("類似度行列の計算時間 : " + sumCalcTimeSim + "(nanosec)");
+                if (!isItemSim){
+                    System.out.println("類似度行列の計算時間 : " + sumCalcTimeSim + "(nanosec)");
+                }
                 System.out.println("推定評価値の計算時間 : " + sumCalcTimeEstimate + "(nanosec)\n\n");
                 //System.out.println("MSE               : " + Math.sqrt(MSE/countMSE) + "\n\n");
                 MSEs[tryCount] = String.valueOf(Math.sqrt(MSE/countMSE));
@@ -109,7 +147,7 @@ public class Test2 {
         }
     }
 
-    public static void printSimilarityMatrix(SimilarityMatrix similarityMatrix,int num_user){
+    public static void printSimilarityMatrix(SimilarityMatrix similarityMatrix, int num_user){
         int user1,user2;
         System.out.println("       1     2     3     4     5     6     7     8     9    10");
         for (user1 = 1; user1 <= num_user; user1++){
@@ -124,10 +162,12 @@ public class Test2 {
 
             for (user2 = 1; user2 <= num_user; user2++){
                 //類似度行列計算時間の計測
-                long start = System.nanoTime();
-                similarityMatrix.calcAndSetSimilarity(user1,user2);
-                long end = System.nanoTime();
-                sumCalcTimeSim += end - start;
+                if (!isItemSim){
+                    long start = System.nanoTime();
+                    similarityMatrix.calcAndSetSimilarity(user1,user2);
+                    long end = System.nanoTime();
+                    sumCalcTimeSim += end - start;
+                }
 
                 double tmp = round(similarityMatrix.getSimilarity(user1,user2));
                 if (user1 <= 10 && user2 <= 10){

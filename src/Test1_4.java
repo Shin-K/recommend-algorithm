@@ -1,7 +1,3 @@
-package recommend;
-
-import recommend.RatingMatrix;
-
 import java.io.*;
 
 /**

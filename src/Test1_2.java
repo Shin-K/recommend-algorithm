@@ -1,7 +1,3 @@
-package recommend;
-
-import recommend.MovieTitle;
-
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
